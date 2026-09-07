@@ -344,7 +344,8 @@ $('#skill-search')?.addEventListener('input', e => {
   const q = e.target.value.trim().toLowerCase();
   $$('#skills-grid .skill-card').forEach(card => {
     const name = (card.dataset.name || '').toLowerCase();
-    card.style.display = (!q || name.includes(q)) ? '' : 'none';
+    const match = !q || name.includes(q);
+    card.style.setProperty('display', match ? '' : 'none', 'important');
   });
 });
 
