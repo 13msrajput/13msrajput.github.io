@@ -88,7 +88,7 @@ function renderProjectFilters() {
     `<button class="chip${c === projState.cat ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
 }
 
-const PROJECTS_INITIAL = 6;
+const PROJECTS_INITIAL = 4;
 let projShowAll = false;
 
 function renderProjects() {
@@ -125,16 +125,24 @@ function renderProjects() {
         </div>
       </div>
     </article>`).join('');
-  const showMoreBtn = (!projShowAll && !projState.q && list.length > PROJECTS_INITIAL)
-    ? `<div class="show-more-row" style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
-        <button id="proj-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
-          <i class="fa-solid fa-chevron-down"></i> Show All Projects (${list.length - PROJECTS_INITIAL} more)
-        </button>
-      </div>`
+  const toggleBtn = !projState.q && list.length > PROJECTS_INITIAL
+    ? projShowAll
+      ? `<div class="show-more-row" style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+          <button id="proj-show-less" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+            <i class="fa-solid fa-chevron-up"></i> Show Less
+          </button>
+        </div>`
+      : `<div class="show-more-row" style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+          <button id="proj-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+            <i class="fa-solid fa-chevron-down"></i> Show All Projects (${list.length - PROJECTS_INITIAL} more)
+          </button>
+        </div>`
     : '';
-  grid.innerHTML = cards + showMoreBtn;
-  const btn = $('#proj-show-more');
-  if (btn) btn.addEventListener('click', () => { projShowAll = true; renderProjects(); });
+  grid.innerHTML = cards + toggleBtn;
+  const moreBtn = $('#proj-show-more');
+  if (moreBtn) moreBtn.addEventListener('click', () => { projShowAll = true; renderProjects(); });
+  const lessBtn = $('#proj-show-less');
+  if (lessBtn) lessBtn.addEventListener('click', () => { projShowAll = false; renderProjects(); document.getElementById('projects-section').scrollIntoView({behavior:'smooth'}); });
 }
 
 $('#project-filters').addEventListener('click', e => {
