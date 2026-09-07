@@ -384,11 +384,12 @@ function renderCertFilters() {
   $('#cert-filters').innerHTML = cats.map(c =>
     `<button class="chip${c === certState.cat ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
 }
-const CERTS_INITIAL = 10;
+const CERTS_INITIAL = 8;
 let certShowAll = false;
 
 function renderCerts() {
   const list = MSR.CERTS.filter(c =>
+    c.issuer !== 'Datacom' &&
     (certState.cat === 'All' || c.cat === certState.cat) &&
     (!certState.q || (c.title + c.issuer).toLowerCase().includes(certState.q)));
   if (!list.length) {
@@ -411,16 +412,24 @@ function renderCerts() {
       + `<div class="cert-actions">${fileBtn}</div>`
       + `</div></div>`;
   }).join('');
-  const showMoreBtn = (!certShowAll && !certState.q && list.length > CERTS_INITIAL)
-    ? `<div style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
-        <button id="cert-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
-          <i class="fa-solid fa-chevron-down"></i> Show All Certificates (${list.length - CERTS_INITIAL} more)
-        </button>
-      </div>`
+  const toggleBtn = !certState.q && list.length > CERTS_INITIAL
+    ? certShowAll
+      ? `<div style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+          <button id="cert-show-less" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+            <i class="fa-solid fa-chevron-up"></i> Show Less
+          </button>
+        </div>`
+      : `<div style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+          <button id="cert-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+            <i class="fa-solid fa-chevron-down"></i> Show All Certificates (${list.length - CERTS_INITIAL} more)
+          </button>
+        </div>`
     : '';
-  $('#cert-grid').innerHTML = cards + showMoreBtn;
-  const btn = $('#cert-show-more');
-  if (btn) btn.addEventListener('click', () => { certShowAll = true; renderCerts(); });
+  $('#cert-grid').innerHTML = cards + toggleBtn;
+  const moreBtn = $('#cert-show-more');
+  if (moreBtn) moreBtn.addEventListener('click', () => { certShowAll = true; renderCerts(); });
+  const lessBtn = $('#cert-show-less');
+  if (lessBtn) lessBtn.addEventListener('click', () => { certShowAll = false; renderCerts(); document.getElementById('certificates-section').scrollIntoView({behavior:'smooth'}); });
 }
 $('#cert-filters').addEventListener('click', e => {
   const b = e.target.closest('[data-cat]'); if (!b) return;
