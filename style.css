@@ -1633,7 +1633,7 @@ section[id], #hero-section {
 }
 /* Remove old skill filters */
 #skill-filters { display: none !important; }
-#skill-search { display: none !important; }
+#skill-search { display: block !important; }
 .skill-card {
   background: #ffffff !important;
   border: 1px solid var(--border) !important;
@@ -1650,6 +1650,7 @@ section[id], #hero-section {
   min-height: unset !important;
   transition: transform .2s, border-color .2s, box-shadow .2s !important;
 }
+.skill-card[style*="display: none"] { display: none !important; }
 .skill-card:hover {
   transform: translateY(-3px) !important;
   border-color: var(--primary) !important;
