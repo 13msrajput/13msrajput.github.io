@@ -1744,9 +1744,9 @@ section[id], #hero-section {
 
 /* ═══ FINAL ALIGNMENT + HOVER FIXES ═══ */
 
-/* ── Center secondary nav links ── */
-.nav-secondary .nav-dock { justify-content: center; }
-.nav-links { justify-content: center; }
+/* ── Secondary nav links fill full width ── */
+.nav-secondary .nav-dock { justify-content: flex-start; }
+.nav-links { justify-content: space-between; width: 100%; }
 
 /* ── Oracle nav-top: 3-column grid (burger+brand | search | nothing) ── */
 .nav-top-dock {
