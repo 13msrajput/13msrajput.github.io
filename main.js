@@ -384,11 +384,19 @@ function renderCertFilters() {
   $('#cert-filters').innerHTML = cats.map(c =>
     `<button class="chip${c === certState.cat ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
 }
+const CERTS_INITIAL = 10;
+let certShowAll = false;
+
 function renderCerts() {
   const list = MSR.CERTS.filter(c =>
     (certState.cat === 'All' || c.cat === certState.cat) &&
     (!certState.q || (c.title + c.issuer).toLowerCase().includes(certState.q)));
-  $('#cert-grid').innerHTML = list.length ? list.map((c, i) => {
+  if (!list.length) {
+    $('#cert-grid').innerHTML = `<p class="no-results">No certificates match "${certState.q}".</p>`;
+    return;
+  }
+  const visible = (certShowAll || certState.q) ? list : list.slice(0, CERTS_INITIAL);
+  const cards = visible.map((c, i) => {
     const iconHtml = c.img
       ? `<img src="${c.img}" alt="${c.issuer}" width="52" height="52" class="cert-issuer-img" onerror="this.style.display='none';this.parentElement.insertAdjacentHTML('beforeend','<i class=\\'fa-solid fa-award\\' style=\\'color:var(--primary);font-size:2rem\\'></i>')">`
       : `<i class="${c.icon||'fa-solid fa-award'}" style="color:${c.color||'var(--primary)'};font-size:2rem" aria-hidden="true"></i>`;
@@ -402,12 +410,21 @@ function renderCerts() {
       + `<p class="cert-issuer">${c.issuer} · ${c.year}</p>`
       + `<div class="cert-actions">${fileBtn}</div>`
       + `</div></div>`;
-  }).join('')
-    : `<p class="no-results">No certificates match "${certState.q}".</p>`;
+  }).join('');
+  const showMoreBtn = (!certShowAll && !certState.q && list.length > CERTS_INITIAL)
+    ? `<div style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+        <button id="cert-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+          <i class="fa-solid fa-chevron-down"></i> Show All Certificates (${list.length - CERTS_INITIAL} more)
+        </button>
+      </div>`
+    : '';
+  $('#cert-grid').innerHTML = cards + showMoreBtn;
+  const btn = $('#cert-show-more');
+  if (btn) btn.addEventListener('click', () => { certShowAll = true; renderCerts(); });
 }
 $('#cert-filters').addEventListener('click', e => {
   const b = e.target.closest('[data-cat]'); if (!b) return;
-  certState.cat = b.dataset.cat; renderCertFilters(); renderCerts(); sound.tick();
+  certState.cat = b.dataset.cat; certShowAll = false; renderCertFilters(); renderCerts(); sound.tick();
 });
 $('#cert-search').addEventListener('input', debounce(e => { certState.q = e.target.value.trim().toLowerCase(); renderCerts(); }));
 renderCertFilters(); renderCerts();
