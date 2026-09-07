@@ -88,6 +88,9 @@ function renderProjectFilters() {
     `<button class="chip${c === projState.cat ? ' active' : ''}" data-cat="${c}">${c}</button>`).join('');
 }
 
+const PROJECTS_INITIAL = 6;
+let projShowAll = false;
+
 function renderProjects() {
   const list = projState.data.filter(p => {
     if (projState.cat !== 'All' && p.cat !== projState.cat) return false;
@@ -97,7 +100,12 @@ function renderProjects() {
     return haystack.includes(projState.q);
   });
   const grid = $('#projects-grid');
-  grid.innerHTML = list.length ? list.map((p, i) => `
+  if (!list.length) {
+    grid.innerHTML = `<p class="no-results">No projects match "${projState.q}".</p>`;
+    return;
+  }
+  const visible = (projShowAll || projState.q) ? list : list.slice(0, PROJECTS_INITIAL);
+  const cards = visible.map((p, i) => `
     <article class="project-card" style="--i:${i}">
       <div class="project-banner">
         <span class="project-cat mono">${p.cat}</span>
@@ -116,13 +124,22 @@ function renderProjects() {
           ${p.homepage ? `<a class="mini-btn solid" href="${p.homepage}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> App</a>` : ''}
         </div>
       </div>
-    </article>`).join('')
-    : `<p class="no-results">No projects match "${projState.q}".</p>`;
+    </article>`).join('');
+  const showMoreBtn = (!projShowAll && !projState.q && list.length > PROJECTS_INITIAL)
+    ? `<div class="show-more-row" style="grid-column:1/-1;text-align:center;margin-top:1.5rem">
+        <button id="proj-show-more" class="mini-btn solid" style="padding:.65rem 2rem;font-size:.95rem">
+          <i class="fa-solid fa-chevron-down"></i> Show All Projects (${list.length - PROJECTS_INITIAL} more)
+        </button>
+      </div>`
+    : '';
+  grid.innerHTML = cards + showMoreBtn;
+  const btn = $('#proj-show-more');
+  if (btn) btn.addEventListener('click', () => { projShowAll = true; renderProjects(); });
 }
 
 $('#project-filters').addEventListener('click', e => {
   const b = e.target.closest('[data-cat]'); if (!b) return;
-  projState.cat = b.dataset.cat; renderProjectFilters(); renderProjects();
+  projState.cat = b.dataset.cat; projShowAll = false; renderProjectFilters(); renderProjects();
 });
 $('#project-search').addEventListener('input', (window.MSR_debounce || (f => f))(e => { projState.q = e.target.value.trim().toLowerCase(); renderProjects(); }));
 
