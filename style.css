@@ -1883,7 +1883,7 @@ section[id], #hero-section {
 }
 .project-card:nth-child(4n) { border-right: 1px solid var(--border) !important; }
 .project-card:last-child { border-right: 1px solid var(--border) !important; }
-.project-card:hover { transform: none !important; } /* tilt handled by JS */
+/* project-card hover: handled by universal lift rule below */
 .project-banner {
   height: 110px !important;
   display: flex !important;
@@ -1920,7 +1920,7 @@ section[id], #hero-section {
   padding: 14px 8px !important;
   transition: transform .25s cubic-bezier(.25,.8,.25,1), border-color .2s, box-shadow .25s !important;
 }
-.skill-card:hover { transform: none !important; } /* tilt via JS */
+/* skill-card hover: handled by universal lift rule below */
 .skill-icon { width: 42px !important; height: 42px !important; margin: 0 auto !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 .skill-icon img { width: 36px !important; height: 36px !important; object-fit: contain !important; display: block !important; }
 .skill-icon i { font-size: 1.9rem !important; line-height: 1 !important; }
@@ -1944,8 +1944,7 @@ section[id], #hero-section {
 .cert-tag { display: none !important; }
 
 /* ── Course cards compact ── */
-.course-card { transition: transform .25s cubic-bezier(.25,.8,.25,1), box-shadow .25s !important; }
-.course-card:hover { transform: none !important; }
+/* course-card hover: handled by universal lift rule below */
 
 /* ── Social/magnetic icons: keep existing effect ── */
 
@@ -2042,30 +2041,11 @@ section[id], #hero-section {
 .cert-art img { width: 44px !important; height: 44px !important; object-fit: contain !important; }
 .cert-art i { font-size: 2rem !important; }
 
-/* ── Cards: no hover movement — static position always ── */
-.project-card:hover, .skill-card:hover, .cert-card:hover,
-.course-card:hover, .edu-card:hover, .blog-card:hover { transform: none !important; }
-
 /* ── Nav top: when no burger on desktop, brand goes first ── */
 @media(min-width: 769px) {
   .nav-top-dock {
     grid-template-columns: auto 1fr !important;
   }
-}
-
-/* ═══ STATIC CARDS — no hover movement on any card ═══ */
-.project-card:hover,
-.skill-card:hover,
-.cert-card:hover,
-.course-card:hover,
-.edu-card:hover,
-.blog-card:hover,
-.ach-card:hover,
-.xp-card:hover,
-.lc-card:hover,
-.profile-links a:hover,
-.hero-socials a:hover {
-  transform: none !important;
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -2095,40 +2075,72 @@ section[id], #hero-section {
   box-shadow: none !important;
 }
 
-/* 2–7. ALL CARDS — thin blue border on hover, no movement, no thick shadow */
+/* 2–7. ALL CARDS — domain-card hover: lift + primary border + glow + gradient top bar */
 
-/* Shared transition for all hovered cards */
+/* Shared transition for all cards */
 .project-card, .xp-card, .cert-card, .lc-card,
-.skill-card, .contact-form, .map-placeholder {
-  transition: border-color .3s ease !important;
-  transform: none !important;
+.skill-card, .course-card, .edu-card,
+.contact-form, .map-placeholder, .ab2-stat-card {
+  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease) !important;
 }
 
-/* Thin blue border only — same style as the skill card screenshot */
+/* Gradient top-bar ::before on every card (matching domain card effect) */
+.project-card::before,
+.xp-card::before,
+.cert-card::before,
+.skill-card::before,
+.course-card::before,
+.edu-card::before,
+.ab2-stat-card::before {
+  display: block !important;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  height: 2px !important;
+  background: var(--grad) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  transition: transform .38s var(--ease) !important;
+  pointer-events: none !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+}
+/* Make sure all these cards are position:relative for the ::before to work */
+.project-card, .xp-card, .cert-card, .skill-card,
+.course-card, .edu-card, .ab2-stat-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* Hover: lift + primary border + glow shadow + slide-in top bar */
 .project-card:hover,
 .xp-card:hover,
 .cert-card:hover,
 .lc-card:hover,
 .skill-card:hover,
+.course-card:hover,
+.edu-card:hover,
+.ab2-stat-card:hover,
 .contact-form:hover,
 .map-placeholder:hover {
   border-color: var(--primary) !important;
-  box-shadow: none !important;
-  transform: none !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 36px -14px var(--glow) !important;
   background: var(--surface) !important;
 }
 
-/* Kill all ::before top-bar animations on cards */
-.project-card::before,
-.xp-card::before,
-.cert-card::before,
-.skill-card::before {
-  display: none !important;
+.project-card:hover::before,
+.xp-card:hover::before,
+.cert-card:hover::before,
+.skill-card:hover::before,
+.course-card:hover::before,
+.edu-card:hover::before,
+.ab2-stat-card:hover::before {
+  transform: scaleX(1) !important;
 }
-.project-card:hover::before {
-  opacity: 0 !important;
-  transform: scaleX(0) !important;
-}
+
+/* Restore project-card banner icon animation */
+.project-card:hover .project-banner i { transform: scale(1.18) rotate(-6deg) !important; }
 
 /* ══ CERT CARDS — project-card style ══ */
 .cert-grid {
