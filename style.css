@@ -2320,3 +2320,20 @@ section[id], #hero-section {
 .map-placeholder:hover::before {
   transform: scaleX(1) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   BUTTONS — match mini-btn (Details) hover: primary color tint
+   Targets: Explore Work, Résumé, Let's Talk, Send Message
+   Effect only on the button itself — no card/box change.
+   ══════════════════════════════════════════════════════════════ */
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: color-mix(in srgb, #2a2825 85%, var(--primary)) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent),
+              0 8px 20px -8px var(--glow) !important;
+  color: #ffffff !important;
+  transform: none !important;
+  transition: background .25s, border-color .25s, box-shadow .25s !important;
+}
