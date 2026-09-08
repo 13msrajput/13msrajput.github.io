@@ -2273,3 +2273,50 @@ section[id], #hero-section {
 .project-card:hover .project-banner i {
   transform: scale(1.18) rotate(-6deg) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   CONTACT — location map & form match skill-card hover exactly
+   ══════════════════════════════════════════════════════════════ */
+
+.contact-form,
+.map-placeholder {
+  position: relative !important;
+  transition: border-color .25s var(--ease), transform .25s cubic-bezier(.25,.8,.25,1), box-shadow .25s !important;
+}
+
+/* map-placeholder already has overflow:hidden — keep it, ::before still renders inside */
+.map-placeholder {
+  overflow: hidden !important;
+}
+
+/* Gradient top-bar */
+.contact-form::before,
+.map-placeholder::before {
+  display: block !important;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  height: 2px !important;
+  background: var(--grad) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  transition: transform .38s var(--ease) !important;
+  pointer-events: none !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
+}
+
+/* Hover: lift + primary border + glow */
+.contact-form:hover,
+.map-placeholder:hover {
+  border-color: var(--primary) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 36px -14px var(--glow) !important;
+}
+
+/* Slide-in top bar on hover */
+.contact-form:hover::before,
+.map-placeholder:hover::before {
+  transform: scaleX(1) !important;
+}
