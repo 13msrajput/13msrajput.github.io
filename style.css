@@ -2214,3 +2214,62 @@ section[id], #hero-section {
   border-radius: 4px;
   display: block;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   PROJECTS & CERTIFICATES — match skill-card hover exactly
+   (lift + primary border + glow shadow + gradient top bar)
+   These rules are placed last to guarantee they win over all
+   earlier overrides, including ones without !important.
+   ══════════════════════════════════════════════════════════════ */
+
+/* 1. Ensure position:relative + overflow:hidden so ::before renders */
+.project-card,
+.cert-card {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* 2. Gradient top-bar — identical to skill-card */
+.project-card::before,
+.cert-card::before {
+  display: block !important;
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 0 auto 0 !important;
+  height: 2px !important;
+  background: var(--grad) !important;
+  transform: scaleX(0) !important;
+  transform-origin: left !important;
+  transition: transform .38s var(--ease) !important;
+  pointer-events: none !important;
+  border-radius: 0 !important;
+  opacity: 1 !important;
+  z-index: 2 !important;
+}
+
+/* 3. Transition — smooth, same timing as skill-card */
+.project-card,
+.cert-card {
+  transition: border-color .25s var(--ease), transform .25s cubic-bezier(.25,.8,.25,1), box-shadow .25s !important;
+}
+
+/* 4. Hover: lift + primary border + glow — identical to skill-card */
+.project-card:hover,
+.cert-card:hover {
+  border-color: var(--primary) !important;
+  transform: translateY(-4px) !important;
+  box-shadow: 0 14px 36px -14px var(--glow) !important;
+  background: #ffffff !important;
+}
+
+/* 5. Slide-in top bar on hover */
+.project-card:hover::before,
+.cert-card:hover::before {
+  transform: scaleX(1) !important;
+}
+
+/* 6. Restore project-card banner icon animation (3D tilt sets inline
+      transform, so this only fires when tilt JS is absent / reduced-motion) */
+.project-card:hover .project-banner i {
+  transform: scale(1.18) rotate(-6deg) !important;
+}
