@@ -67,6 +67,38 @@ function toggleThemePanel() {} // stub so command palette reference doesn't brea
   if (meta) meta.content = '#F5F2EC';
 })();
 
+/* ════════ DARK MODE ════════
+   Persisted to localStorage under msr.dark.
+   Applies `html.dark` class; CSS does the rest. */
+(() => {
+  const btn = $('#dark-toggle');
+  const meta = $('meta[name="theme-color"]');
+
+  function applyDark(dark) {
+    html.classList.toggle('dark', dark);
+    if (btn) {
+      btn.innerHTML = dark
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+      btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    if (meta) meta.content = dark ? '#0f1117' : '#F5F2EC';
+  }
+
+  // Restore saved preference, fallback to OS preference
+  const saved = store.get('dark', null);
+  const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+  applyDark(saved !== null ? saved : prefersDark);
+
+  btn?.addEventListener('click', () => {
+    const next = !html.classList.contains('dark');
+    store.set('dark', next);
+    applyDark(next);
+    sound.pop();
+  });
+})();
+
 /* ════════ ORACLE CONTACT WIDGET ════════
    Two stacked icon buttons on the right side (chat + call).
    Chat opens the AI assistant panel.
