@@ -2230,8 +2230,8 @@ section[id], #hero-section {
 }
 
 /* ════════════════════════════════════════════════════════════
-   BUTTON GLOW ANIMATION — rotating conic border on hover/click
-   Colors matched to portfolio theme (#F5F2EC, amber, teal)
+   GLOW ANIMATION — project & cert card mini-btn buttons only
+   Rotating conic border on hover/click · theme colors matched
    ════════════════════════════════════════════════════════════ */
 
 @property --btn-angle {
@@ -2244,20 +2244,22 @@ section[id], #hero-section {
   to { --btn-angle: 360deg; }
 }
 
-.btn.btn-primary,
-.btn.btn-submit {
+.project-card .mini-btn.solid,
+.cert-card .mini-btn.solid,
+.cert-view-btn {
   position: relative;
   z-index: 0;
   isolation: isolate;
   overflow: visible !important;
 }
 
-.btn.btn-primary::before,
-.btn.btn-submit::before {
+.project-card .mini-btn.solid::before,
+.cert-card .mini-btn.solid::before,
+.cert-view-btn::before {
   content: '';
   position: absolute;
   inset: -2px;
-  border-radius: calc(var(--radius-btn, 14px) + 2px);
+  border-radius: 13px;
   background: conic-gradient(
     from var(--btn-angle),
     #0f0e0c 0%,
@@ -2273,29 +2275,32 @@ section[id], #hero-section {
   );
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-.btn.btn-primary::after,
-.btn.btn-submit::after {
+.project-card .mini-btn.solid::after,
+.cert-card .mini-btn.solid::after,
+.cert-view-btn::after {
   content: '';
   position: absolute;
   inset: 2px;
-  border-radius: calc(var(--radius-btn, 14px) - 1px);
-  background: #2a2825;
+  border-radius: 10px;
+  background: #161513;
   z-index: -1;
   pointer-events: none;
 }
 
-.btn.btn-primary:hover::before,
-.btn.btn-submit:hover::before {
+.project-card .mini-btn.solid:hover::before,
+.cert-card .mini-btn.solid:hover::before,
+.cert-view-btn:hover::before {
   opacity: 1 !important;
   animation: btn-glow-spin 2.6s linear infinite !important;
 }
 
-.btn.btn-primary:hover,
-.btn.btn-submit:hover {
+.project-card .mini-btn.solid:hover,
+.cert-card .mini-btn.solid:hover,
+.cert-view-btn:hover {
   background: transparent !important;
   border-color: transparent !important;
   box-shadow: none !important;
@@ -2303,15 +2308,18 @@ section[id], #hero-section {
   color: #ffffff !important;
 }
 
-.btn.btn-primary:active::before,
-.btn.btn-submit:active::before {
+.project-card .mini-btn.solid:active::before,
+.cert-card .mini-btn.solid:active::before,
+.cert-view-btn:active::before {
   opacity: 1 !important;
   animation: btn-glow-spin 1.1s linear infinite !important;
 }
 
-.btn.btn-primary:active,
-.btn.btn-submit:active {
+.project-card .mini-btn.solid:active,
+.cert-card .mini-btn.solid:active,
+.cert-view-btn:active {
   transform: scale(0.97) !important;
   background: transparent !important;
   border-color: transparent !important;
+  color: #ffffff !important;
 }
