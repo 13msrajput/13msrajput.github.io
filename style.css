@@ -2044,7 +2044,7 @@ section[id], #hero-section {
 /* ── Nav top: when no burger on desktop, brand goes first ── */
 @media(min-width: 769px) {
   .nav-top-dock {
-    grid-template-columns: auto 1fr !important;
+    grid-template-columns: auto 1fr auto !important;
   }
 }
 
@@ -2336,4 +2336,328 @@ section[id], #hero-section {
   color: #ffffff !important;
   transform: none !important;
   transition: background .25s, border-color .25s, box-shadow .25s !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE — html.dark
+   All tokens remapped; hardcoded colours overridden below.
+   ══════════════════════════════════════════════════════════════ */
+
+html.dark {
+  color-scheme: dark;
+
+  /* ── Core tokens ── */
+  --bg:            #0f1117;
+  --bg-2:          #161b26;
+  --surface:       #1a2035;
+  --surface-2:     #1e2540;
+  --border:        rgba(255,255,255,.10);
+  --border-strong: rgba(255,255,255,.20);
+  --text:          #e8eaf0;
+  --muted:         #8a92a8;
+  --primary:       #38b6d8;
+  --accent:        #50cce8;
+  --pop:           #f07050;
+  --glow:          rgba(56,182,216,.22);
+  --grad:          linear-gradient(135deg,#38b6d8,#50cce8 70%,#f07050);
+  --shadow:        0 2px 12px rgba(0,0,0,.35),0 8px 24px -8px rgba(0,0,0,.28);
+
+  /* heatmap & leetcode tints for dark */
+  --lc-track:  rgba(255,255,255,.08);
+  --lc-0:      rgba(255,255,255,.05);
+  --gh-0:      rgba(255,255,255,.05);
+}
+
+/* ── Body background ── */
+html.dark body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Loader ── */
+html.dark #loader { background: var(--bg); }
+
+/* ── Top nav white bar → dark ── */
+html.dark .nav-top {
+  background: #141820 !important;
+  border-bottom-color: rgba(255,255,255,.09) !important;
+}
+
+/* ── Search pill ── */
+html.dark .nav-search-pill {
+  background: #1e2540 !important;
+  border-color: rgba(255,255,255,.14) !important;
+  color: #8a92a8 !important;
+}
+html.dark .nav-search-pill:hover {
+  border-color: rgba(255,255,255,.30) !important;
+}
+html.dark .nav-search-pill i { color: #8a92a8 !important; }
+html.dark .nav-search-pill .nav-search-placeholder { color: #6a7290 !important; }
+
+/* ── MSR brand colour preserved (Oracle red still readable on dark) ── */
+html.dark .nav-brand,
+html.dark .nav-brand .brand-text {
+  color: #e85c3c !important;
+  -webkit-text-fill-color: #e85c3c !important;
+}
+
+/* ── Burger bars ── */
+html.dark .nav-burger-oracle span { background: #e8eaf0 !important; }
+html.dark .nav-burger-oracle:hover { background: rgba(255,255,255,.08) !important; }
+
+/* ── Secondary dark bar: stays dark, just adjust text ── */
+html.dark .nav-secondary { background: #0a0d14 !important; }
+html.dark .nav-links a { color: #8a92a8 !important; }
+html.dark .nav-links a:hover,
+html.dark .nav-links a.active { color: #e8eaf0 !important; }
+
+/* Mobile nav drawer */
+html.dark .nav-links {
+  background: var(--bg) !important;
+  border-bottom-color: var(--border) !important;
+}
+html.dark .nav-links a {
+  border-bottom-color: var(--border) !important;
+}
+
+/* ── Scroll progress ── */
+html.dark #scroll-progress { background: transparent; }
+
+/* ── Cards & surfaces ── */
+html.dark .project-card,
+html.dark .cert-card,
+html.dark .lc-card,
+html.dark .xp-card,
+html.dark .course-card,
+html.dark .blog-card,
+html.dark .facet-card,
+html.dark .skill-card,
+html.dark .ach-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Profile card / hero card ── */
+html.dark .profile-links a {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Buttons ── */
+html.dark .btn-ghost {
+  background: rgba(255,255,255,.05) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+html.dark .btn-ghost:hover {
+  border-color: var(--primary) !important;
+  background: rgba(56,182,216,.08) !important;
+}
+html.dark .btn-primary {
+  background: var(--grad) !important;
+  color: #fff !important;
+}
+html.dark .btn-primary:hover,
+html.dark .btn-primary:focus {
+  background: color-mix(in srgb, var(--primary) 80%, #0f1117) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent),
+              0 8px 20px -8px var(--glow) !important;
+  color: #ffffff !important;
+}
+
+/* ── Mini buttons ── */
+html.dark .mini-btn {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Hero section ── */
+html.dark .hero-greeting,
+html.dark .hero-bio { color: var(--muted) !important; }
+html.dark .hero-socials a {
+  background: rgba(255,255,255,.05) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+}
+html.dark .hero-socials a:hover {
+  color: var(--text) !important;
+  border-color: var(--primary) !important;
+}
+
+/* ── Section headers ── */
+html.dark .section-head h2,
+html.dark .section-head .section-label { color: var(--text) !important; }
+html.dark .section-label { color: var(--muted) !important; }
+
+/* ── About / facets ── */
+html.dark .about-body { color: var(--text) !important; }
+html.dark .facet-card { background: var(--surface) !important; }
+html.dark .facet-label { color: var(--muted) !important; }
+html.dark .facet-val { color: var(--text) !important; }
+
+/* ── Contact form ── */
+html.dark .contact-form,
+html.dark .map-placeholder {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+html.dark .contact-form input,
+html.dark .contact-form textarea {
+  background: var(--bg-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+html.dark .contact-form input::placeholder,
+html.dark .contact-form textarea::placeholder { color: var(--muted) !important; }
+html.dark .contact-form label { color: var(--muted) !important; }
+
+/* ── Command palette ── */
+html.dark #cmdk-overlay { background: rgba(0,0,0,.65) !important; }
+html.dark #cmdk-box {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+html.dark #cmdk-input {
+  background: transparent !important;
+  color: var(--text) !important;
+  border-bottom-color: var(--border) !important;
+}
+html.dark .cmdk-item { color: var(--text) !important; }
+html.dark .cmdk-item:hover,
+html.dark .cmdk-item.active { background: rgba(56,182,216,.12) !important; }
+html.dark .cmdk-foot { color: var(--muted) !important; }
+
+/* ── AI chat panel ── */
+html.dark #chat-panel {
+  background: var(--bg-2) !important;
+  border-color: var(--border) !important;
+}
+html.dark .chat-head {
+  background: var(--surface) !important;
+  border-bottom-color: var(--border) !important;
+}
+html.dark .chat-messages { background: var(--bg) !important; }
+html.dark .chat-bubble-user {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+html.dark .chat-bubble-ai {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+html.dark #chat-input-field {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Oracle contact widget ── */
+html.dark #oracle-contact-popup {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Skills search + project search inputs ── */
+html.dark .search-shell {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+html.dark .search-shell input {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+html.dark .search-shell i { color: var(--muted) !important; }
+
+/* ── Tags / chips ── */
+html.dark .chip,
+html.dark .tag {
+  background: rgba(56,182,216,.10) !important;
+  border-color: rgba(56,182,216,.20) !important;
+  color: var(--accent) !important;
+}
+
+/* ── Skill bar tracks ── */
+html.dark .skill-bar-track {
+  background: rgba(255,255,255,.08) !important;
+}
+
+/* ── Timeline / XP ── */
+html.dark .xp-card { background: var(--surface) !important; }
+html.dark .xp-line { background: var(--border) !important; }
+html.dark .xp-dot { border-color: var(--primary) !important; }
+
+/* ── Table / LeetCode stats ── */
+html.dark .lc-card { background: var(--surface) !important; }
+
+/* ── Scrollbar ── */
+html.dark ::-webkit-scrollbar-track { background: var(--bg); }
+html.dark ::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary) 35%, transparent);
+  border-color: var(--bg);
+}
+
+/* ── Selection ── */
+html.dark ::selection { background: var(--primary); color: #fff; }
+
+/* ── kbd ── */
+html.dark kbd { border-color: var(--border); color: var(--muted); }
+
+/* ── Toast ── */
+html.dark .toast {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Footer / bottom ── */
+html.dark footer,
+html.dark .site-footer {
+  background: var(--bg-2) !important;
+  border-top-color: var(--border) !important;
+  color: var(--muted) !important;
+}
+
+/* ── Skills summary ── */
+html.dark .skills-summary li {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE TOGGLE BUTTON
+   ══════════════════════════════════════════════════════════════ */
+#dark-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(22,21,19,.22);
+  background: #ffffff;
+  color: #6b6560;
+  font-size: .95rem;
+  cursor: pointer;
+  transition: border-color .2s, background .2s, color .2s, transform .3s;
+  flex-shrink: 0;
+}
+#dark-toggle:hover {
+  border-color: rgba(22,21,19,.45);
+  transform: rotate(20deg);
+}
+
+/* dark mode state */
+html.dark #dark-toggle {
+  background: #1e2540 !important;
+  border-color: rgba(255,255,255,.16) !important;
+  color: #e8eaf0 !important;
+}
+html.dark #dark-toggle:hover {
+  border-color: rgba(255,255,255,.35) !important;
 }
