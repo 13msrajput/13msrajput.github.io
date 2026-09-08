@@ -833,8 +833,6 @@ html.theme-anim body::after{content:'';position:fixed;inset:0;z-index:300;backgr
   font-weight: 500;
   font-size: .9rem;
   letter-spacing: .01em;
-  position: relative;
-  overflow: hidden;
   padding: 11px 22px;
   transition: background .2s,border-color .2s,color .2s,box-shadow .2s;
   will-change: auto;
@@ -1493,9 +1491,7 @@ section[id], #hero-section {
 }
 .btn-primary:hover {
   background: #3d3834 !important;
-  border-color: var(--primary) !important;
-  box-shadow: 0 12px 32px -12px var(--glow) !important;
-  transform: translateY(-3px) !important;
+  border-color: #3d3834 !important;
 }
 .mini-btn.solid {
   background: #2a2825 !important;
@@ -2056,53 +2052,22 @@ section[id], #hero-section {
    FINAL OVERRIDES — wins over all Oracle/theme layers above
    ════════════════════════════════════════════════════════════ */
 
-/* 1. BUTTONS — shimmer sweep + glow (same as card ::before effect) */
-
-/* Make btn-primary position:relative + overflow:hidden for ::before sweep */
-.btn-primary {
-  position: relative !important;
-  overflow: hidden !important;
-  transition: border-color .35s var(--ease), box-shadow .35s var(--ease), transform .35s var(--ease), background .35s !important;
-}
-
-/* Gradient top-bar sweep (same pattern as cards) */
-.btn-primary::before {
-  content: '' !important;
-  position: absolute !important;
-  inset: 0 0 auto 0 !important;
-  height: 2px !important;
-  background: var(--grad) !important;
-  transform: scaleX(0) !important;
-  transform-origin: left !important;
-  transition: transform .38s var(--ease) !important;
-  pointer-events: none !important;
-  border-radius: 0 !important;
-  opacity: 1 !important;
-  z-index: 1 !important;
-}
-
-/* Hover: lift + primary border + glow + sweep in top bar */
+/* 1. BUTTONS — zero hover effect, fully static */
 .btn-primary:hover,
 .btn-primary:focus {
   background: #2a2824 !important;
-  border-color: var(--primary) !important;
-  box-shadow: 0 12px 32px -12px var(--glow) !important;
-  transform: translateY(-3px) !important;
+  border-color: #2a2824 !important;
+  box-shadow: none !important;
+  transform: none !important;
   color: #ffffff !important;
 }
-
-.btn-primary:hover::before,
-.btn-primary:focus::before {
-  transform: scaleX(1) !important;
-}
-
 .btn-ghost:hover,
 .btn-ghost:focus {
-  background: color-mix(in srgb, var(--primary) 8%, transparent) !important;
-  border-color: var(--primary) !important;
-  color: var(--primary) !important;
-  box-shadow: 0 8px 24px -10px var(--glow) !important;
-  transform: translateY(-2px) !important;
+  background: transparent !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: none !important;
+  transform: none !important;
 }
 .mini-btn:hover,
 .mini-btn:focus {
