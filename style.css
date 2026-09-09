@@ -2661,3 +2661,298 @@ html.dark #dark-toggle {
 html.dark #dark-toggle:hover {
   border-color: rgba(255,255,255,.35) !important;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   DARK MODE — COMPREHENSIVE FIX (appended last, highest priority)
+   Fixes all hardcoded #ffffff / white backgrounds that survive
+   into dark mode. Every rule uses !important to win cascade.
+   Theme ref: fashion app dark — pure #0a0a0a base, #111 cards,
+   crisp white text, cyan/teal accent — professional & premium.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Deeper, richer dark palette ── */
+html.dark {
+  --bg:            #080c12 !important;
+  --bg-2:          #0d1219 !important;
+  --surface:       #111722 !important;
+  --surface-2:     #161e2d !important;
+  --border:        rgba(255,255,255,.09) !important;
+  --border-strong: rgba(255,255,255,.18) !important;
+  --text:          #f0f2f8 !important;
+  --muted:         #7a839a !important;
+  --primary:       #3ec6e8 !important;
+  --accent:        #58d8f5 !important;
+  --pop:           #f27858 !important;
+  --glow:          rgba(62,198,232,.20) !important;
+  --grad:          linear-gradient(135deg,#3ec6e8,#58d8f5 65%,#f27858) !important;
+  --shadow:        0 2px 16px rgba(0,0,0,.55), 0 8px 32px -8px rgba(0,0,0,.45) !important;
+}
+
+/* ── Body ── */
+html.dark body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+/* ── All cards: kill every hardcoded white background ── */
+html.dark .skill-card,
+html.dark .edu-card,
+html.dark .xp-card,
+html.dark .cert-card,
+html.dark .course-card,
+html.dark .project-card,
+html.dark .blog-card,
+html.dark .lc-card,
+html.dark .ach-card,
+html.dark .facet-card,
+html.dark .ab2-stat-card,
+html.dark .social-card,
+html.dark .pm-panel,
+html.dark .lb-figure,
+html.dark .toast {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+  box-shadow: 0 1px 8px rgba(0,0,0,.4) !important;
+}
+
+/* ── Skill card: icon bg ── */
+html.dark .skill-icon {
+  background: rgba(62,198,232,.08) !important;
+  border-radius: 8px;
+}
+html.dark .skill-name {
+  color: var(--text) !important;
+}
+
+/* ── Education card text ── */
+html.dark .edu-main h3 {
+  color: var(--text) !important;
+}
+html.dark .edu-main .edu-sub,
+html.dark .edu-badge,
+html.dark .edu-tags span {
+  color: var(--muted) !important;
+  border-color: var(--border) !important;
+}
+html.dark .edu-icon {
+  background: rgba(62,198,232,.10) !important;
+  color: var(--primary) !important;
+}
+html.dark .edu-badge .status {
+  color: var(--primary) !important;
+}
+
+/* ── XP / Experience ── */
+html.dark .xp-card,
+html.dark .xp-head,
+html.dark .xp-meta { color: var(--text) !important; }
+html.dark .xp-org { color: var(--primary) !important; }
+html.dark .xp-badge {
+  background: rgba(62,198,232,.10) !important;
+  color: var(--primary) !important;
+  border-color: rgba(62,198,232,.22) !important;
+}
+html.dark .xp-timeline::before {
+  background: rgba(62,198,232,.25) !important;
+}
+html.dark .xp-item::before {
+  background: var(--primary) !important;
+  box-shadow: 0 0 12px rgba(62,198,232,.45) !important;
+}
+html.dark .xp-points li { color: var(--muted) !important; }
+html.dark .xp-points li::before { color: var(--primary) !important; }
+
+/* ── Cert cards ── */
+html.dark .cert-art {
+  background: linear-gradient(135deg, rgba(62,198,232,.12), rgba(88,216,245,.06)) !important;
+}
+html.dark .cert-art i { color: var(--primary) !important; }
+html.dark .cert-body h3,
+html.dark .cert-title { color: var(--text) !important; }
+html.dark .cert-issuer { color: var(--muted) !important; }
+html.dark .cert-issuer i { color: var(--primary) !important; }
+html.dark .cert-seal {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--primary) !important;
+}
+
+/* ── Project cards ── */
+html.dark .project-banner {
+  background: linear-gradient(135deg, rgba(62,198,232,.10), rgba(88,216,245,.05)) !important;
+}
+html.dark .project-banner i { color: var(--primary) !important; }
+html.dark .project-name { color: var(--text) !important; }
+html.dark .project-banner .project-cat {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: var(--muted) !important;
+}
+
+/* ── Mini buttons ── */
+html.dark .mini-btn {
+  background: rgba(255,255,255,.06) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: var(--text) !important;
+}
+html.dark .mini-btn.solid,
+html.dark .cert-view-btn {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* ── Profile links / social icons ── */
+html.dark .profile-links a {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--muted) !important;
+}
+html.dark .profile-links a:hover {
+  color: var(--text) !important;
+  border-color: var(--primary) !important;
+}
+html.dark .social-card {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Contact form & map ── */
+html.dark .contact-form,
+html.dark .map-placeholder {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+html.dark .contact-form input,
+html.dark .contact-form textarea,
+html.dark .contact-form select {
+  background: var(--bg-2) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+html.dark .contact-form label { color: var(--muted) !important; }
+
+/* ── Skills summary ── */
+html.dark .skills-summary li {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Course cards ── */
+html.dark .course-card h3,
+html.dark .course-card h3 i { color: var(--text) !important; }
+html.dark .course-meta { color: var(--muted) !important; }
+
+/* ── Blog cards ── */
+html.dark .blog-card h3 { color: var(--text) !important; }
+html.dark .blog-meta { color: var(--muted) !important; }
+
+/* ── Achievement cards ── */
+html.dark .ach-card h3 { color: var(--text) !important; }
+html.dark .ach-card p { color: var(--muted) !important; }
+
+/* ── Hero section ── */
+html.dark .hero-name,
+html.dark .hero-role { color: var(--text) !important; }
+html.dark .hero-greeting,
+html.dark .hero-bio { color: var(--muted) !important; }
+
+/* ── HOVER states: fix white flash on dark backgrounds ── */
+html.dark .project-card:hover,
+html.dark .cert-card:hover,
+html.dark .skill-card:hover,
+html.dark .edu-card:hover,
+html.dark .xp-card:hover,
+html.dark .course-card:hover,
+html.dark .blog-card:hover,
+html.dark .lc-card:hover,
+html.dark .ach-card:hover,
+html.dark .facet-card:hover,
+html.dark .ab2-stat-card:hover,
+html.dark .contact-form:hover,
+html.dark .map-placeholder:hover {
+  background: var(--surface-2) !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 14px 40px -14px var(--glow), 0 4px 16px rgba(0,0,0,.4) !important;
+}
+
+/* ── Chips / tags ── */
+html.dark .chip,
+html.dark .tag,
+html.dark .edu-tags span {
+  background: rgba(62,198,232,.08) !important;
+  border-color: rgba(62,198,232,.18) !important;
+  color: var(--accent) !important;
+}
+html.dark .chip.active {
+  background: var(--primary) !important;
+  color: #fff !important;
+  border-color: var(--primary) !important;
+}
+
+/* ── Section headings ── */
+html.dark .section-label { color: var(--primary) !important; }
+html.dark .section-head h2 { color: var(--text) !important; }
+html.dark .section-head p { color: var(--muted) !important; }
+
+/* ── About / facets ── */
+html.dark .about-body p { color: var(--muted) !important; }
+html.dark .facet-label { color: var(--muted) !important; }
+html.dark .facet-val { color: var(--text) !important; }
+
+/* ── LeetCode / stats ── */
+html.dark .lc-card { background: var(--surface) !important; }
+html.dark .lc-stat-label { color: var(--muted) !important; }
+html.dark .lc-stat-val { color: var(--text) !important; }
+
+/* ── PM panel / ToC ── */
+html.dark .pm-panel {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+html.dark .lb-figure {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+}
+
+/* ── Hero stats (numbers below hero) ── */
+html.dark .hero-stat-val { color: var(--text) !important; }
+html.dark .hero-stat-label { color: var(--muted) !important; }
+
+/* ── Oracle contact widget floating buttons ── */
+html.dark #oracle-contact-popup {
+  background: var(--surface) !important;
+  border-color: var(--border) !important;
+  color: var(--text) !important;
+}
+
+/* ── Navigation dark mode precision ── */
+html.dark #site-nav {
+  background: rgba(8,12,18,.88) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+html.dark .nav-top {
+  background: #0d1117 !important;
+  border-bottom-color: rgba(255,255,255,.08) !important;
+}
+html.dark .nav-search-pill {
+  background: #131b28 !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #6a7290 !important;
+}
+html.dark .nav-links a { color: #7a839a !important; }
+html.dark .nav-links a:hover,
+html.dark .nav-links a.active { color: #f0f2f8 !important; }
+html.dark .nav-secondary { background: #080c12 !important; }
+
+/* ── Scrollbar refined ── */
+html.dark ::-webkit-scrollbar-track { background: #080c12; }
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(62,198,232,.22);
+  border-color: #080c12;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(62,198,232,.38);
+}
