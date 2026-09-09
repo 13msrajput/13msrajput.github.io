@@ -368,7 +368,7 @@ html.reduce-motion .reveal{opacity:1;transform:none}
 
 /* ---------- Skills ---------- */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;min-height:120px}
-.skill-card{padding:18px 20px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:transform .3s var(--ease),border-color .3s,box-shadow .3s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0) * 35ms)}
+.skill-card{padding:18px 20px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:border-color .3s,box-shadow .3s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0) * 35ms)}
 @keyframes cardIn{from{opacity:0;transform:translateY(22px) scale(.97)}}
 .skill-card:hover{border-color:var(--primary);box-shadow:0 16px 32px -20px var(--glow)}
 .skill-card-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
@@ -387,7 +387,7 @@ html.reduce-motion .reveal{opacity:1;transform:none}
 .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:22px}
 .grid-loading{grid-column:1/-1;display:flex;align-items:center;justify-content:center;gap:12px;color:var(--muted);padding:70px 0;font-size:.86rem}
 .spinner{width:16px;height:16px;border-radius:50%;border:2px solid var(--border);border-top-color:var(--primary);animation:spin 1s linear infinite;display:inline-block}
-.project-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);overflow:hidden;transition:transform .4s var(--ease),border-color .4s,box-shadow .4s;animation:cardIn .6s var(--ease) both;animation-delay:calc(var(--i,0)*60ms)}
+.project-card{position:relative;display:flex;flex-direction:column;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);overflow:hidden;transition:border-color .4s,box-shadow .4s;animation:cardIn .6s var(--ease) both;animation-delay:calc(var(--i,0)*60ms)}
 .project-card:hover{border-color:var(--primary);box-shadow:0 26px 54px -24px var(--glow)}
 .project-banner{position:relative;height:132px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 18%,transparent),color-mix(in srgb,var(--accent) 12%,transparent))}
 .project-banner::before{content:'';position:absolute;inset:0;background:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:22px 22px;opacity:.5}
@@ -430,7 +430,7 @@ html.reduce-motion .reveal{opacity:1;transform:none}
 .course-track::before{content:'';position:absolute;left:8px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--primary),var(--accent));opacity:.4}
 .course-item{position:relative;padding:0 0 34px}
 .course-item::before{content:'';position:absolute;left:-33px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--primary);box-shadow:0 0 14px var(--glow)}
-.course-card{padding:24px 26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:transform .35s var(--ease),border-color .35s}
+.course-card{padding:24px 26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:border-color .35s}
 .course-card:hover{border-color:var(--primary)}
 .course-card h3{font-family:var(--font-display);font-size:1.08rem;display:flex;align-items:center;gap:10px;margin-bottom:8px}
 .course-card h3 i{color:var(--primary)}
@@ -501,7 +501,7 @@ html[data-mode="dark"] .lc-contrib .contrib-count span{text-shadow:0 0 12px var(
 .xp-timeline::before{content:'';position:absolute;left:9px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--primary),var(--accent));opacity:.4}
 .xp-item{position:relative;padding-bottom:36px}
 .xp-item::before{content:'';position:absolute;left:-35px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--grad);box-shadow:0 0 16px var(--glow);animation:orbPulse 3s infinite}
-.xp-card{padding:26px 28px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:transform .35s var(--ease),border-color .35s,box-shadow .35s}
+.xp-card{padding:26px 28px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:border-color .35s,box-shadow .35s}
 .xp-card:hover{border-color:var(--primary);box-shadow:0 18px 40px -20px var(--glow)}
 .xp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:6px}
 .xp-head h3{font-family:var(--font-display);font-size:1.15rem}
@@ -515,7 +515,7 @@ html[data-mode="dark"] .lc-contrib .contrib-count span{text-shadow:0 0 12px var(
 
 /* ---------- Achievements ---------- */
 .ach-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:34px}
-.ach-card{border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);padding:18px;display:flex;flex-direction:column;gap:12px;transition:transform .35s var(--ease),border-color .35s;overflow:hidden}
+.ach-card{border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);padding:18px;display:flex;flex-direction:column;gap:12px;transition:border-color .35s;overflow:hidden}
 .ach-card:hover{border-color:var(--primary)}
 .ach-card img{margin:0 auto;max-height:190px;object-fit:contain}
 .ach-wide{grid-column:1/-1}
@@ -573,7 +573,7 @@ html[data-mode="dark"] .contrib-count span{color:var(--gh-4);text-shadow:0 0 12p
 @media(max-width:820px){.social-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.social-grid{grid-template-columns:repeat(2,1fr)}}
 .social-card{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:22px 12px 18px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);color:var(--text);text-decoration:none;text-align:center;aspect-ratio:1/1;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
-.social-card:hover{border-color:var(--primary);box-shadow:0 14px 32px -14px var(--glow);transform:translateY(-4px)}
+.social-card:hover{border-color:var(--primary);box-shadow:0 14px 32px -14px var(--glow)}
 .social-logo{width:52px;height:52px;border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .social-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .social-name{font-size:.85rem;font-weight:700;font-family:var(--font-display);line-height:1.2;margin:0}
@@ -585,8 +585,8 @@ html[data-mode="dark"] .contrib-count span{color:var(--gh-4);text-shadow:0 0 12p
 @media(max-width:1000px){.cert-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.cert-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:440px){.cert-grid{grid-template-columns:1fr}}
-.cert-card{border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:transform .4s var(--ease),border-color .4s,box-shadow .4s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0)*50ms);text-align:left;width:100%}
-.cert-card:hover{border-color:var(--primary);box-shadow:0 16px 36px -16px var(--glow);transform:translateY(-3px)}
+.cert-card{border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:border-color .4s,box-shadow .4s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0)*50ms);text-align:left;width:100%}
+.cert-card:hover{border-color:var(--primary);box-shadow:0 16px 36px -16px var(--glow)}
 .cert-art{position:relative;height:88px;display:grid;place-items:center;background:linear-gradient(135deg,color-mix(in srgb,var(--primary) 18%,transparent),color-mix(in srgb,var(--accent) 10%,transparent));overflow:hidden}
 .cert-art::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent 0 14px,color-mix(in srgb,var(--border) 60%,transparent) 14px 15px);opacity:.4}
 .cert-art i{font-size:1.8rem;color:var(--primary);filter:drop-shadow(0 0 12px var(--glow));transition:transform .4s var(--ease);position:relative;z-index:1}
@@ -615,7 +615,7 @@ html[data-mode="dark"] .contrib-count span{color:var(--gh-4);text-shadow:0 0 12p
 
 /* ---------- Blog ---------- */
 .blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px}
-.blog-card{display:flex;flex-direction:column;gap:14px;padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:transform .4s var(--ease),border-color .4s,box-shadow .4s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0)*50ms)}
+.blog-card{display:flex;flex-direction:column;gap:14px;padding:26px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--border);backdrop-filter:blur(12px);transition:border-color .4s,box-shadow .4s;animation:cardIn .55s var(--ease) both;animation-delay:calc(var(--i,0)*50ms)}
 .blog-card:hover{border-color:var(--primary);box-shadow:0 20px 44px -22px var(--glow)}
 .blog-top{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;color:var(--muted)}
 .blog-top .read-time i{color:var(--primary);margin-right:5px}
@@ -1697,13 +1697,13 @@ section[id], #hero-section {
   text-align: center !important;
   cursor: default !important;
   min-height: unset !important;
-  transition: transform .2s, border-color .2s, box-shadow .2s !important;
+  transition: border-color .2s, box-shadow .2s !important;
 }
 .skill-card[style*="display: none"] { display: none !important; }
 .skill-card:hover {
-  transform: translateY(-3px) !important;
   border-color: var(--primary) !important;
   box-shadow: 0 8px 20px rgba(0,107,143,.1) !important;
+  /* transform removed — JS tilt handles lift to prevent CSS/JS blink conflict */
 }
 .skill-card::before { display: none !important; }
 .skill-icon {
@@ -1918,9 +1918,9 @@ section[id], #hero-section {
   aspect-ratio: 1 / 1.1 !important;
   min-height: unset !important;
   padding: 14px 8px !important;
-  transition: transform .25s cubic-bezier(.25,.8,.25,1), border-color .2s, box-shadow .25s !important;
+  transition: border-color .2s, box-shadow .25s !important;
 }
-/* skill-card hover: handled by universal lift rule below */
+/* skill-card hover: JS tilt handles transform — no CSS transform transition */
 .skill-icon { width: 42px !important; height: 42px !important; margin: 0 auto !important; display: flex !important; align-items: center !important; justify-content: center !important; }
 .skill-icon img { width: 36px !important; height: 36px !important; object-fit: contain !important; display: block !important; }
 .skill-icon i { font-size: 1.9rem !important; line-height: 1 !important; }
@@ -2077,11 +2077,11 @@ section[id], #hero-section {
 
 /* 2–7. ALL CARDS — domain-card hover: lift + primary border + glow + gradient top bar */
 
-/* Shared transition for all cards */
+/* Shared transition for all cards — transform removed, JS tilt owns it */
 .project-card, .xp-card, .cert-card, .lc-card,
 .skill-card, .course-card, .edu-card,
 .contact-form, .map-placeholder, .ab2-stat-card {
-  transition: border-color .3s var(--ease), transform .3s var(--ease), box-shadow .3s var(--ease) !important;
+  transition: border-color .3s var(--ease), box-shadow .3s var(--ease) !important;
 }
 
 /* Gradient top-bar ::before on every card (matching domain card effect) */
@@ -2112,7 +2112,7 @@ section[id], #hero-section {
   overflow: hidden !important;
 }
 
-/* Hover: lift + primary border + glow shadow + slide-in top bar */
+/* Hover: border + glow shadow — NO transform (JS tilt owns the lift) */
 .project-card:hover,
 .xp-card:hover,
 .cert-card:hover,
@@ -2124,9 +2124,9 @@ section[id], #hero-section {
 .contact-form:hover,
 .map-placeholder:hover {
   border-color: var(--primary) !important;
-  transform: translateY(-4px) !important;
   box-shadow: 0 14px 36px -14px var(--glow) !important;
   background: var(--surface) !important;
+  /* transform intentionally absent — JS tilt handles it; CSS transform here causes blink */
 }
 
 .project-card:hover::before,
@@ -2247,19 +2247,18 @@ section[id], #hero-section {
   z-index: 2 !important;
 }
 
-/* 3. Transition — smooth, same timing as skill-card */
+/* 3. Transition — transform excluded; JS tilt owns it */
 .project-card,
 .cert-card {
-  transition: border-color .25s var(--ease), transform .25s cubic-bezier(.25,.8,.25,1), box-shadow .25s !important;
+  transition: border-color .25s var(--ease), box-shadow .25s !important;
 }
 
-/* 4. Hover: lift + primary border + glow — identical to skill-card */
+/* 4. Hover: border + glow — NO transform (JS tilt owns lift; CSS transform = blink) */
 .project-card:hover,
 .cert-card:hover {
   border-color: var(--primary) !important;
-  transform: translateY(-4px) !important;
   box-shadow: 0 14px 36px -14px var(--glow) !important;
-  background: #ffffff !important;
+  background: var(--surface) !important;
 }
 
 /* 5. Slide-in top bar on hover */
@@ -2281,7 +2280,7 @@ section[id], #hero-section {
 .contact-form,
 .map-placeholder {
   position: relative !important;
-  transition: border-color .25s var(--ease), transform .25s cubic-bezier(.25,.8,.25,1), box-shadow .25s !important;
+  transition: border-color .25s var(--ease), box-shadow .25s !important;
 }
 
 /* map-placeholder already has overflow:hidden — keep it, ::before still renders inside */
@@ -2307,11 +2306,10 @@ section[id], #hero-section {
   z-index: 2 !important;
 }
 
-/* Hover: lift + primary border + glow */
+/* Hover: border + glow — transform removed to prevent blink with JS */
 .contact-form:hover,
 .map-placeholder:hover {
   border-color: var(--primary) !important;
-  transform: translateY(-4px) !important;
   box-shadow: 0 14px 36px -14px var(--glow) !important;
 }
 
