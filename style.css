@@ -163,7 +163,9 @@ html.reduce-motion #cursor-dot{display:none}
 }
 
 /* ---------- Buttons ---------- */
-.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:var(--radius-btn,14px);font-weight:600;font-size:.92rem;border:1px solid transparent;transition:transform .3s var(--ease),box-shadow .35s,background .35s,border-color .35s;will-change:transform}
+/* FIX: transform removed from CSS transition — magnetic JS owns it directly.
+   Having transform in CSS transition caused rubber-band stretching on move. */
+.btn{display:inline-flex;align-items:center;gap:10px;padding:13px 26px;border-radius:var(--radius-btn,14px);font-weight:600;font-size:.92rem;border:1px solid transparent;transition:box-shadow .35s,background .35s,border-color .35s;will-change:transform}
 .btn-primary{background:var(--grad);color:#fff;box-shadow:0 12px 32px -12px var(--glow)}
 .btn-primary:hover{box-shadow:0 18px 44px -12px var(--glow)}
 .btn-ghost{border-color:var(--border);color:var(--text);background:color-mix(in srgb,var(--surface) 70%,transparent);backdrop-filter:blur(10px)}
@@ -846,7 +848,6 @@ html.theme-anim body::after{content:'';position:fixed;inset:0;z-index:300;backgr
 .btn-primary:hover {
   background: #2a2824;
   border-color: #2a2824;
-  transform: none;
   box-shadow: none;
 }
 .btn-ghost {
@@ -859,7 +860,6 @@ html.theme-anim body::after{content:'';position:fixed;inset:0;z-index:300;backgr
 .btn-ghost:hover {
   border-color: var(--primary);
   color: var(--primary);
-  transform: none;
   background: transparent;
 }
 .mini-btn {
@@ -2052,13 +2052,13 @@ section[id], #hero-section {
    FINAL OVERRIDES — wins over all Oracle/theme layers above
    ════════════════════════════════════════════════════════════ */
 
-/* 1. BUTTONS — zero hover effect, fully static */
+/* 1. BUTTONS — static hover (transform owned by JS magnetic, not CSS) */
 .btn-primary:hover,
 .btn-primary:focus {
   background: #2a2824 !important;
   border-color: #2a2824 !important;
   box-shadow: none !important;
-  transform: none !important;
+  /* NO transform:none here — JS magnetic writes transform directly */
   color: #ffffff !important;
 }
 .btn-ghost:hover,
@@ -2067,11 +2067,11 @@ section[id], #hero-section {
   border-color: var(--border) !important;
   color: var(--text) !important;
   box-shadow: none !important;
-  transform: none !important;
+  /* NO transform:none here — JS magnetic writes transform directly */
 }
 .mini-btn:hover,
 .mini-btn:focus {
-  transform: none !important;
+  /* NO transform:none — mini-btns don't have magnetic but keep consistent */
   box-shadow: none !important;
 }
 
@@ -2334,7 +2334,7 @@ section[id], #hero-section {
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent),
               0 8px 20px -8px var(--glow) !important;
   color: #ffffff !important;
-  transform: none !important;
+  /* transform intentionally absent — JS magnetic owns it */
   transition: background .25s, border-color .25s, box-shadow .25s !important;
 }
 
