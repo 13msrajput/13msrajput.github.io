@@ -264,47 +264,50 @@ navLinks.addEventListener('click', e => { if (e.target.matches('a')) { navLinks.
 
 /* ════════ MAGNETIC BUTTONS ════════ */
 
-/* ─── Social icon magnetic (unchanged — this is the reference feel) ─── */
+/* ─── Hero CTA & social icon magnetic ─── */
+/* FIX: Kill CSS transition on transform DURING move (prevents stretching).
+   Only spring the transition on pointerleave so it snaps back cleanly. */
 $$('.magnetic').forEach(btn => {
+  btn.addEventListener('pointerenter', () => {
+    // Freeze the CSS transform transition so JS can move it without rubber-band
+    btn.style.transition = 'background .35s, border-color .35s, box-shadow .35s';
+  });
   btn.addEventListener('pointermove', e => {
     if (html.classList.contains('reduce-motion')) return;
-    const r = btn.getBoundingClientRect();
-    btn.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .18}px,${(e.clientY - r.top - r.height / 2) * .28}px)`;
+    const r  = btn.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) * .14;
+    const dy = (e.clientY - r.top  - r.height / 2) * .14;
+    // Hard cap: never move more than 8px so large buttons don't warp
+    btn.style.transform = `translate(${Math.max(-8, Math.min(8, dx))}px,${Math.max(-8, Math.min(8, dy))}px)`;
   });
   btn.addEventListener('pointerleave', () => {
-    btn.style.transition = 'transform .4s cubic-bezier(.23,1,.32,1)';
+    // Spring back with transition, then restore full transition
+    btn.style.transition = 'transform .45s cubic-bezier(.23,1,.32,1), background .35s, border-color .35s, box-shadow .35s';
     btn.style.transform  = '';
-    setTimeout(() => (btn.style.transition = ''), 400);
+    setTimeout(() => (btn.style.transition = ''), 460);
   });
 });
 
-/* ─── Card magnetic — IDENTICAL algorithm to social icons ─── */
-// Key: NO transition on pointermove (instant = smooth), spring on pointerleave
-const CARD_MAG = '.project-card,.skill-card,.cert-card,.course-card,.edu-card,.blog-card,.ach-card,.profile-links a,.hero-stats li,.xp-card,.lc-card';
+/* ─── Card magnetic — REMOVED to fix edge-blinking conflict with 3D tilt ─── */
+/* Cards now use ONLY the 3D tilt below. Two systems writing card.style.transform
+   simultaneously on pointermove caused rapid flicker at card edges. */
+const CARD_MAG = '.profile-links a,.hero-stats li';   // non-tilt elements only
 
 function attachMag(card) {
   if (card._m) return;
   card._m = true;
-
-  // Cap movement: max 12px regardless of card size
   card.addEventListener('pointerenter', () => {
-    card.style.transition = 'none'; // instant tracking — no lag at all
+    card.style.transition = 'none';
     card.style.willChange = 'transform';
   });
-
   card.addEventListener('pointermove', e => {
     if (html.classList.contains('reduce-motion')) return;
-    const r   = card.getBoundingClientRect();
-    // Same factor as social icons (.18/.28) — capped to ±12px for large cards
-    const rawX = (e.clientX - r.left  - r.width  / 2) * .18;
-    const rawY = (e.clientY - r.top   - r.height / 2) * .18;
-    const dx   = Math.max(-12, Math.min(12, rawX));
-    const dy   = Math.max(-12, Math.min(12, rawY));
+    const r  = card.getBoundingClientRect();
+    const dx = Math.max(-10, Math.min(10, (e.clientX - r.left - r.width  / 2) * .18));
+    const dy = Math.max(-10, Math.min(10, (e.clientY - r.top  - r.height / 2) * .18));
     card.style.transform = `translate(${dx}px,${dy}px)`;
   });
-
   card.addEventListener('pointerleave', () => {
-    // Spring back exactly like social icons
     card.style.transition = 'transform .45s cubic-bezier(.23,1,.32,1), box-shadow .45s';
     card.style.transform  = '';
     card.style.boxShadow  = '';
@@ -315,7 +318,6 @@ function attachMag(card) {
 
 function initAllCards() { $$(CARD_MAG).forEach(attachMag); }
 initAllCards();
-// Auto-attach to cards added after page load (API renders projects, skills, certs)
 new MutationObserver(initAllCards).observe(document.body, { childList: true, subtree: true });
 
 
@@ -642,33 +644,59 @@ chatForm.addEventListener('submit', e => {
 oracleWidget.init();
 
 /* ════════ 3D CARD TILT — project, skill, cert, course cards ════════ */
+/* FIX: Blinking at edges was caused by transition fighting instant JS writes.
+   Solution: transition:none during active tracking (instant = smooth, no flicker),
+   spring transition only on pointerleave. rAF batches writes to one per frame. */
 (() => {
   const CARD_SELECTORS = '.project-card,.skill-card,.cert-card,.course-card,.edu-card,.blog-card,.ach-card';
+  const MAX_ROT  = 6;   // degrees — slightly reduced for stability
+  const MAX_LIFT = 5;   // px
+
   function initTilt(card) {
     if (card._tiltInit) return;
     card._tiltInit = true;
-    const MAX_ROT = 8; // max degrees
-    const MAX_LIFT = 6; // px
-    card.style.transition = 'transform .25s cubic-bezier(.25,.8,.25,1),box-shadow .25s';
+
+    let rafId = null;
+    let inside = false;
+
+    card.addEventListener('pointerenter', () => {
+      inside = true;
+      // Kill ALL transform transitions while inside — this is the key blink fix
+      card.style.transition = 'box-shadow .25s';
+      card.style.willChange = 'transform';
+    });
+
     card.addEventListener('pointermove', e => {
       if (html.classList.contains('reduce-motion')) return;
-      const r = card.getBoundingClientRect();
-      const x = ((e.clientX - r.left) / r.width - 0.5) * 2;
-      const y = ((e.clientY - r.top) / r.height - 0.5) * 2;
-      card.style.transform = `perspective(700px) rotateY(${x * MAX_ROT}deg) rotateX(${-y * MAX_ROT}deg) translateY(-${MAX_LIFT}px) scale(1.012)`;
-      card.style.boxShadow = `${-x*6}px ${-y*6}px 28px rgba(22,21,19,.13)`;
+      if (!inside) return;
+      // Cancel any pending frame to avoid stale writes
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        const r = card.getBoundingClientRect();
+        // Clamp to [0,1] so partial pointer events outside bounds don't blow up
+        const nx = Math.max(0, Math.min(1, (e.clientX - r.left)  / r.width));
+        const ny = Math.max(0, Math.min(1, (e.clientY - r.top)   / r.height));
+        const x  = (nx - 0.5) * 2;
+        const y  = (ny - 0.5) * 2;
+        card.style.transform  = `perspective(800px) rotateY(${x * MAX_ROT}deg) rotateX(${-y * MAX_ROT}deg) translateY(-${MAX_LIFT}px) scale(1.01)`;
+        card.style.boxShadow  = `${-x * 5}px ${-y * 5}px 24px rgba(0,0,0,.18)`;
+        rafId = null;
+      });
     });
+
     card.addEventListener('pointerleave', () => {
-      card.style.transform = '';
-      card.style.boxShadow = '';
+      inside = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+      // Spring back smoothly — transition re-enabled ONLY at this point
+      card.style.transition = 'transform .42s cubic-bezier(.23,1,.32,1), box-shadow .42s';
+      card.style.transform  = '';
+      card.style.boxShadow  = '';
+      card.style.willChange = 'auto';
     });
   }
-  // Observe DOM for dynamically added cards
-  const tiltObs = new MutationObserver(() => {
-    $$(CARD_SELECTORS).forEach(initTilt);
-  });
+
+  const tiltObs = new MutationObserver(() => $$(CARD_SELECTORS).forEach(initTilt));
   tiltObs.observe(document.body, { childList: true, subtree: true });
-  // Init existing cards
   $$(CARD_SELECTORS).forEach(initTilt);
 })();
 
