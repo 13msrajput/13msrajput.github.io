@@ -2339,92 +2339,98 @@ section[id], #hero-section {
 }
 
 /* ══════════════════════════════════════════════════════════════
-   DARK MODE — html.dark
-   All tokens remapped; hardcoded colours overridden below.
+   DARK MODE — VS Code Monokai Theme (EXACT)
+   
+   Monokai palette:
+   Background:    #272822  (editor bg)
+   Panel/Surface: #1e1f1c  (darker panels) / #2d2e27 (lighter)
+   Statusbar:     #75715e  (comments/muted)
+   Yellow:        #e6db74  (strings)
+   Orange:        #fd971f  (entity names, keywords)
+   Red:           #f92672  (keywords, operators)
+   Purple:        #ae81ff  (numbers, constants)
+   Blue:          #66d9e8  (built-in types)
+   Green:         #a6e22e  (functions, identifiers)
+   White:         #f8f8f2  (foreground text)
    ══════════════════════════════════════════════════════════════ */
 
 html.dark {
   color-scheme: dark;
 
-  /* ── Core tokens ── */
-  --bg:            #0f1117;
-  --bg-2:          #161b26;
-  --surface:       #1a2035;
-  --surface-2:     #1e2540;
-  --border:        rgba(255,255,255,.10);
-  --border-strong: rgba(255,255,255,.20);
-  --text:          #e8eaf0;
-  --muted:         #8a92a8;
-  --primary:       #38b6d8;
-  --accent:        #50cce8;
-  --pop:           #f07050;
-  --glow:          rgba(56,182,216,.22);
-  --grad:          linear-gradient(135deg,#38b6d8,#50cce8 70%,#f07050);
-  --shadow:        0 2px 12px rgba(0,0,0,.35),0 8px 24px -8px rgba(0,0,0,.28);
+  /* ── Monokai exact tokens ── */
+  --bg:            #272822;
+  --bg-2:          #1e1f1c;
+  --surface:       #2d2e27;
+  --surface-2:     #35362e;
+  --border:        rgba(255,255,255,.08);
+  --border-strong: rgba(255,255,255,.16);
+  --text:          #f8f8f2;
+  --muted:         #75715e;
+  --primary:       #66d9e8;
+  --accent:        #a6e22e;
+  --pop:           #f92672;
+  --glow:          rgba(102,217,232,.18);
+  --grad:          linear-gradient(135deg,#66d9e8,#a6e22e 60%,#f92672);
+  --shadow:        0 2px 14px rgba(0,0,0,.50), 0 8px 28px -8px rgba(0,0,0,.42);
 
-  /* heatmap & leetcode tints for dark */
-  --lc-track:  rgba(255,255,255,.08);
-  --lc-0:      rgba(255,255,255,.05);
-  --gh-0:      rgba(255,255,255,.05);
+  /* Heatmap & LeetCode in dark */
+  --lc-track:  rgba(255,255,255,.07);
+  --lc-0:      rgba(255,255,255,.04);
+  --gh-0:      rgba(255,255,255,.04);
 }
 
-/* ── Body background ── */
+/* ── Body ── */
 html.dark body {
-  background: var(--bg);
-  color: var(--text);
+  background: #272822;
+  color: #f8f8f2;
 }
 
 /* ── Loader ── */
-html.dark #loader { background: var(--bg); }
+html.dark #loader { background: #1e1f1c; }
 
-/* ── Top nav white bar → dark ── */
+/* ══ NAVIGATION ══ */
 html.dark .nav-top {
-  background: #141820 !important;
-  border-bottom-color: rgba(255,255,255,.09) !important;
+  background: #1e1f1c !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
 }
-
-/* ── Search pill ── */
+html.dark #site-nav {
+  background: rgba(30,31,28,.92) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
+html.dark .nav-secondary {
+  background: #1a1b16 !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
+}
 html.dark .nav-search-pill {
-  background: #1e2540 !important;
-  border-color: rgba(255,255,255,.14) !important;
-  color: #8a92a8 !important;
+  background: #35362e !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #75715e !important;
 }
 html.dark .nav-search-pill:hover {
-  border-color: rgba(255,255,255,.30) !important;
+  border-color: rgba(255,255,255,.26) !important;
 }
-html.dark .nav-search-pill i { color: #8a92a8 !important; }
-html.dark .nav-search-pill .nav-search-placeholder { color: #6a7290 !important; }
-
-/* ── MSR brand colour preserved (Oracle red still readable on dark) ── */
+html.dark .nav-search-pill i,
+html.dark .nav-search-pill .nav-search-placeholder { color: #75715e !important; }
 html.dark .nav-brand,
 html.dark .nav-brand .brand-text {
-  color: #e85c3c !important;
-  -webkit-text-fill-color: #e85c3c !important;
+  color: #f92672 !important;
+  -webkit-text-fill-color: #f92672 !important;
 }
-
-/* ── Burger bars ── */
-html.dark .nav-burger-oracle span { background: #e8eaf0 !important; }
-html.dark .nav-burger-oracle:hover { background: rgba(255,255,255,.08) !important; }
-
-/* ── Secondary dark bar: stays dark, just adjust text ── */
-html.dark .nav-secondary { background: #0a0d14 !important; }
-html.dark .nav-links a { color: #8a92a8 !important; }
+html.dark .nav-links a { color: #75715e !important; }
 html.dark .nav-links a:hover,
-html.dark .nav-links a.active { color: #e8eaf0 !important; }
-
-/* Mobile nav drawer */
+html.dark .nav-links a.active { color: #f8f8f2 !important; }
 html.dark .nav-links {
-  background: var(--bg) !important;
-  border-bottom-color: var(--border) !important;
+  background: #272822 !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
 }
 html.dark .nav-links a {
-  border-bottom-color: var(--border) !important;
+  border-bottom-color: rgba(255,255,255,.07) !important;
 }
-
-/* ── Scroll progress ── */
+html.dark .nav-burger-oracle span { background: #f8f8f2 !important; }
+html.dark .nav-burger-oracle:hover { background: rgba(255,255,255,.07) !important; }
 html.dark #scroll-progress { background: transparent; }
 
-/* ── Cards & surfaces ── */
+/* ══ ALL CARDS & SURFACES — Monokai panel color ══ */
 html.dark .project-card,
 html.dark .cert-card,
 html.dark .lc-card,
@@ -2433,205 +2439,373 @@ html.dark .course-card,
 html.dark .blog-card,
 html.dark .facet-card,
 html.dark .skill-card,
-html.dark .ach-card {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+html.dark .ach-card,
+html.dark .edu-card,
+html.dark .ab2-stat-card,
+html.dark .social-card,
+html.dark .pm-panel,
+html.dark .lb-figure,
+html.dark .toast {
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #f8f8f2 !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,.35) !important;
 }
 
-/* ── Profile card / hero card ── */
+/* HOVER — surface-2 lift, accent border */
+html.dark .project-card:hover,
+html.dark .cert-card:hover,
+html.dark .skill-card:hover,
+html.dark .edu-card:hover,
+html.dark .xp-card:hover,
+html.dark .course-card:hover,
+html.dark .blog-card:hover,
+html.dark .lc-card:hover,
+html.dark .ach-card:hover,
+html.dark .facet-card:hover,
+html.dark .ab2-stat-card:hover,
+html.dark .contact-form:hover,
+html.dark .map-placeholder:hover {
+  background: #35362e !important;
+  border-color: #66d9e8 !important;
+  box-shadow: 0 14px 40px -14px rgba(102,217,232,.20), 0 4px 14px rgba(0,0,0,.40) !important;
+}
+
+/* ══ PROFILE CARD / HERO SOCIAL LINKS ══ */
 html.dark .profile-links a {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #75715e !important;
+}
+html.dark .profile-links a:hover {
+  color: #f8f8f2 !important;
+  border-color: #66d9e8 !important;
 }
 
-/* ── Buttons ── */
+/* ══ BUTTONS ══ */
 html.dark .btn-ghost {
-  background: rgba(255,255,255,.05) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.12) !important;
+  color: #f8f8f2 !important;
 }
 html.dark .btn-ghost:hover {
-  border-color: var(--primary) !important;
-  background: rgba(56,182,216,.08) !important;
+  border-color: #66d9e8 !important;
+  background: rgba(102,217,232,.08) !important;
 }
 html.dark .btn-primary {
   background: var(--grad) !important;
-  color: #fff !important;
+  color: #272822 !important;
+  font-weight: 700 !important;
 }
 html.dark .btn-primary:hover,
 html.dark .btn-primary:focus {
-  background: color-mix(in srgb, var(--primary) 80%, #0f1117) !important;
-  border-color: var(--primary) !important;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--primary) 40%, transparent),
-              0 8px 20px -8px var(--glow) !important;
-  color: #ffffff !important;
+  background: linear-gradient(135deg,#52c8d8,#90cc28 60%,#e01a62) !important;
+  box-shadow: 0 0 0 1px rgba(102,217,232,.35), 0 8px 22px -8px rgba(102,217,232,.28) !important;
+  color: #272822 !important;
 }
 
-/* ── Mini buttons ── */
+/* Mini buttons */
 html.dark .mini-btn {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: #35362e !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: #f8f8f2 !important;
+}
+html.dark .mini-btn.solid,
+html.dark .cert-view-btn {
+  background: #66d9e8 !important;
+  color: #272822 !important;
+  border-color: transparent !important;
+  font-weight: 600 !important;
 }
 
-/* ── Hero section ── */
+/* ══ HERO ══ */
+html.dark .hero-name { color: #f8f8f2 !important; }
 html.dark .hero-greeting,
-html.dark .hero-bio { color: var(--muted) !important; }
+html.dark .hero-bio { color: #75715e !important; }
+html.dark .hero-role { color: #f8f8f2 !important; }
+html.dark .role-static { color: #a6e22e !important; }
 html.dark .hero-socials a {
-  background: rgba(255,255,255,.05) !important;
-  border-color: var(--border) !important;
-  color: var(--muted) !important;
+  background: rgba(255,255,255,.04) !important;
+  border-color: rgba(255,255,255,.09) !important;
+  color: #75715e !important;
 }
 html.dark .hero-socials a:hover {
-  color: var(--text) !important;
-  border-color: var(--primary) !important;
+  color: #f8f8f2 !important;
+  border-color: #66d9e8 !important;
+}
+html.dark .hero-stat-val { color: #f8f8f2 !important; }
+html.dark .hero-stat-label { color: #75715e !important; }
+html.dark .grad-text {
+  background: var(--grad) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
 
-/* ── Section headers ── */
-html.dark .section-head h2,
-html.dark .section-head .section-label { color: var(--text) !important; }
-html.dark .section-label { color: var(--muted) !important; }
+/* ══ SECTION HEADERS ══ */
+html.dark .section-label { color: #a6e22e !important; }
+html.dark .section-head h2 { color: #f8f8f2 !important; }
+html.dark .section-head p { color: #75715e !important; }
 
-/* ── About / facets ── */
-html.dark .about-body { color: var(--text) !important; }
-html.dark .facet-card { background: var(--surface) !important; }
-html.dark .facet-label { color: var(--muted) !important; }
-html.dark .facet-val { color: var(--text) !important; }
+/* ══ ABOUT / FACETS ══ */
+html.dark .about-body p { color: #75715e !important; }
+html.dark .facet-card { background: #2d2e27 !important; }
+html.dark .facet-label { color: #75715e !important; }
+html.dark .facet-val { color: #f8f8f2 !important; }
 
-/* ── Contact form ── */
+/* ══ EDUCATION ══ */
+html.dark .edu-card { background: #2d2e27 !important; }
+html.dark .edu-main h3 { color: #f8f8f2 !important; }
+html.dark .edu-main .edu-sub { color: #75715e !important; }
+html.dark .edu-tags span {
+  color: #75715e !important;
+  border-color: rgba(255,255,255,.09) !important;
+  background: transparent !important;
+}
+html.dark .edu-icon {
+  background: rgba(102,217,232,.10) !important;
+  color: #66d9e8 !important;
+}
+html.dark .edu-badge { color: #75715e !important; }
+html.dark .edu-badge .status { color: #a6e22e !important; }
+
+/* ══ EXPERIENCE / XP ══ */
+html.dark .xp-card { background: #2d2e27 !important; }
+html.dark .xp-head h3 { color: #f8f8f2 !important; }
+html.dark .xp-org { color: #66d9e8 !important; }
+html.dark .xp-badge {
+  background: rgba(166,226,46,.10) !important;
+  color: #a6e22e !important;
+  border-color: rgba(166,226,46,.22) !important;
+}
+html.dark .xp-timeline::before { background: rgba(102,217,232,.20) !important; }
+html.dark .xp-item::before {
+  background: #66d9e8 !important;
+  box-shadow: 0 0 12px rgba(102,217,232,.45) !important;
+}
+html.dark .xp-points li { color: #75715e !important; }
+html.dark .xp-points li::before { color: #a6e22e !important; }
+html.dark .xp-line { background: rgba(255,255,255,.07) !important; }
+html.dark .xp-dot { border-color: #66d9e8 !important; }
+
+/* ══ SKILLS ══ */
+html.dark .skill-card { background: #2d2e27 !important; }
+html.dark .skill-name { color: #f8f8f2 !important; }
+html.dark .skill-icon { color: #66d9e8; }
+html.dark .skill-card-top i { color: #66d9e8 !important; }
+html.dark .skill-bar-track { background: rgba(255,255,255,.07) !important; }
+html.dark .skill-bar-fill { background: #66d9e8 !important; }
+html.dark .skills-summary li {
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
+  color: #f8f8f2 !important;
+}
+html.dark .skills-summary strong {
+  color: #a6e22e !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+/* ══ PROJECTS ══ */
+html.dark .project-card { background: #2d2e27 !important; }
+html.dark .project-banner {
+  background: linear-gradient(135deg, rgba(102,217,232,.09), rgba(166,226,46,.05)) !important;
+}
+html.dark .project-banner i { color: #66d9e8 !important; }
+html.dark .project-name { color: #f8f8f2 !important; }
+html.dark .project-banner .project-cat {
+  background: rgba(255,255,255,.05) !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: #75715e !important;
+}
+
+/* ══ CERTIFICATES ══ */
+html.dark .cert-card { background: #2d2e27 !important; }
+html.dark .cert-art {
+  background: linear-gradient(135deg, rgba(102,217,232,.10), rgba(166,226,46,.05)) !important;
+}
+html.dark .cert-art i { color: #66d9e8 !important; }
+html.dark .cert-body h3,
+html.dark .cert-title { color: #f8f8f2 !important; }
+html.dark .cert-issuer { color: #75715e !important; }
+html.dark .cert-issuer i { color: #66d9e8 !important; }
+html.dark .cert-seal {
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.09) !important;
+  color: #66d9e8 !important;
+}
+
+/* ══ TAGS / CHIPS ══ */
+html.dark .chip,
+html.dark .tag {
+  background: rgba(102,217,232,.08) !important;
+  border-color: rgba(102,217,232,.18) !important;
+  color: #66d9e8 !important;
+}
+html.dark .chip.active {
+  background: #66d9e8 !important;
+  color: #272822 !important;
+  border-color: #66d9e8 !important;
+  font-weight: 600 !important;
+}
+html.dark .edu-tags span {
+  background: rgba(255,255,255,.04) !important;
+  color: #75715e !important;
+}
+
+/* ══ COURSES / BLOG / ACH ══ */
+html.dark .course-card h3,
+html.dark .course-card h3 i { color: #f8f8f2 !important; }
+html.dark .course-meta { color: #75715e !important; }
+html.dark .blog-card h3 { color: #f8f8f2 !important; }
+html.dark .blog-meta { color: #75715e !important; }
+html.dark .ach-card h3 { color: #f8f8f2 !important; }
+html.dark .ach-card p { color: #75715e !important; }
+
+/* ══ CONTACT FORM ══ */
 html.dark .contact-form,
 html.dark .map-placeholder {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
 }
 html.dark .contact-form input,
-html.dark .contact-form textarea {
-  background: var(--bg-2) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+html.dark .contact-form textarea,
+html.dark .contact-form select {
+  background: #1e1f1c !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: #f8f8f2 !important;
 }
 html.dark .contact-form input::placeholder,
-html.dark .contact-form textarea::placeholder { color: var(--muted) !important; }
-html.dark .contact-form label { color: var(--muted) !important; }
+html.dark .contact-form textarea::placeholder { color: #75715e !important; }
+html.dark .contact-form label { color: #75715e !important; }
 
-/* ── Command palette ── */
-html.dark #cmdk-overlay { background: rgba(0,0,0,.65) !important; }
+/* ══ COMMAND PALETTE ══ */
+html.dark #cmdk-overlay { background: rgba(0,0,0,.70) !important; }
 html.dark #cmdk-box {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.10) !important;
 }
 html.dark #cmdk-input {
   background: transparent !important;
-  color: var(--text) !important;
-  border-bottom-color: var(--border) !important;
+  color: #f8f8f2 !important;
+  border-bottom-color: rgba(255,255,255,.09) !important;
 }
-html.dark .cmdk-item { color: var(--text) !important; }
+html.dark .cmdk-item { color: #f8f8f2 !important; }
 html.dark .cmdk-item:hover,
-html.dark .cmdk-item.active { background: rgba(56,182,216,.12) !important; }
-html.dark .cmdk-foot { color: var(--muted) !important; }
+html.dark .cmdk-item.active { background: rgba(102,217,232,.10) !important; }
+html.dark .cmdk-foot { color: #75715e !important; }
 
-/* ── AI chat panel ── */
+/* ══ AI CHAT PANEL ══ */
 html.dark #chat-panel {
-  background: var(--bg-2) !important;
-  border-color: var(--border) !important;
+  background: #1e1f1c !important;
+  border-color: rgba(255,255,255,.08) !important;
 }
 html.dark .chat-head {
-  background: var(--surface) !important;
-  border-bottom-color: var(--border) !important;
+  background: #2d2e27 !important;
+  border-bottom-color: rgba(255,255,255,.08) !important;
 }
-html.dark .chat-messages { background: var(--bg) !important; }
+html.dark .chat-messages { background: #272822 !important; }
 html.dark .chat-bubble-user {
-  background: var(--primary) !important;
-  color: #fff !important;
+  background: #66d9e8 !important;
+  color: #272822 !important;
 }
 html.dark .chat-bubble-ai {
-  background: var(--surface) !important;
-  color: var(--text) !important;
+  background: #2d2e27 !important;
+  color: #f8f8f2 !important;
 }
 html.dark #chat-input-field {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.10) !important;
+  color: #f8f8f2 !important;
 }
 
-/* ── Oracle contact widget ── */
+/* ══ ORACLE CONTACT WIDGET ══ */
 html.dark #oracle-contact-popup {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.09) !important;
+  color: #f8f8f2 !important;
 }
 
-/* ── Skills search + project search inputs ── */
+/* ══ SEARCH INPUTS ══ */
 html.dark .search-shell {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.09) !important;
 }
 html.dark .search-shell input {
   background: transparent !important;
-  color: var(--text) !important;
+  color: #f8f8f2 !important;
 }
-html.dark .search-shell i { color: var(--muted) !important; }
+html.dark .search-shell i { color: #75715e !important; }
 
-/* ── Tags / chips ── */
-html.dark .chip,
-html.dark .tag {
-  background: rgba(56,182,216,.10) !important;
-  border-color: rgba(56,182,216,.20) !important;
-  color: var(--accent) !important;
+/* ══ LEETCODE / STATS ══ */
+html.dark .lc-card { background: #2d2e27 !important; }
+html.dark .lc-stat-label { color: #75715e !important; }
+html.dark .lc-stat-val { color: #f8f8f2 !important; }
+html.dark[data-mode="dark"] {
+  --lc-0: rgba(255,255,255,.05);
+  --lc-1: #2d3a1e;
+  --lc-2: #4a6628;
+  --lc-3: #78a832;
+  --lc-4: #a6e22e;
+  --lc-glow: rgba(166,226,46,.55);
 }
+html.dark .lc-contrib .contrib-count span { text-shadow: 0 0 10px rgba(166,226,46,.6); }
 
-/* ── Skill bar tracks ── */
-html.dark .skill-bar-track {
-  background: rgba(255,255,255,.08) !important;
+/* ══ GITHUB CONTRIB ══ */
+html.dark[data-mode="dark"] {
+  --gh-0: rgba(255,255,255,.05);
+  --gh-1: #1a3030;
+  --gh-2: #1a5252;
+  --gh-3: #339999;
+  --gh-4: #66d9e8;
+  --gh-glow: rgba(102,217,232,.60);
 }
+html.dark .contrib-count span { color: #66d9e8; text-shadow: 0 0 10px rgba(102,217,232,.55); }
 
-/* ── Timeline / XP ── */
-html.dark .xp-card { background: var(--surface) !important; }
-html.dark .xp-line { background: var(--border) !important; }
-html.dark .xp-dot { border-color: var(--primary) !important; }
-
-/* ── Table / LeetCode stats ── */
-html.dark .lc-card { background: var(--surface) !important; }
-
-/* ── Scrollbar ── */
-html.dark ::-webkit-scrollbar-track { background: var(--bg); }
-html.dark ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--primary) 35%, transparent);
-  border-color: var(--bg);
-}
-
-/* ── Selection ── */
-html.dark ::selection { background: var(--primary); color: #fff; }
-
-/* ── kbd ── */
-html.dark kbd { border-color: var(--border); color: var(--muted); }
-
-/* ── Toast ── */
+/* ══ TOAST ══ */
 html.dark .toast {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.09) !important;
+  color: #f8f8f2 !important;
 }
 
-/* ── Footer / bottom ── */
+/* ══ PM PANEL / LB FIGURE ══ */
+html.dark .pm-panel {
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+html.dark .lb-figure {
+  background: #2d2e27 !important;
+  border-color: rgba(255,255,255,.08) !important;
+}
+
+/* ══ FOOTER ══ */
 html.dark footer,
 html.dark .site-footer {
-  background: var(--bg-2) !important;
-  border-top-color: var(--border) !important;
-  color: var(--muted) !important;
+  background: #1e1f1c !important;
+  border-top-color: rgba(255,255,255,.07) !important;
+  color: #75715e !important;
 }
 
-/* ── Skills summary ── */
-html.dark .skills-summary li {
-  background: var(--surface) !important;
-  color: var(--text) !important;
+/* ══ SCROLLBAR — Monokai style ══ */
+html.dark ::-webkit-scrollbar-track { background: #1e1f1c; }
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(102,217,232,.22);
+  border-color: #1e1f1c;
+  border-radius: 8px;
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(102,217,232,.40);
 }
 
-/* ══════════════════════════════════════════════════════════════
-   DARK MODE TOGGLE BUTTON
-   ══════════════════════════════════════════════════════════════ */
+/* ══ SELECTION ══ */
+html.dark ::selection { background: #66d9e8; color: #272822; }
+
+/* ══ KBD ══ */
+html.dark kbd { border-color: rgba(255,255,255,.12); color: #75715e; }
+
+/* ══ DARK TOGGLE BUTTON ══ */
 #dark-toggle {
   display: inline-flex;
   align-items: center;
@@ -2651,308 +2825,19 @@ html.dark .skills-summary li {
   border-color: rgba(22,21,19,.45);
   transform: rotate(20deg);
 }
-
-/* dark mode state */
 html.dark #dark-toggle {
-  background: #1e2540 !important;
-  border-color: rgba(255,255,255,.16) !important;
-  color: #e8eaf0 !important;
+  background: #35362e !important;
+  border-color: rgba(255,255,255,.14) !important;
+  color: #f8f8f2 !important;
 }
 html.dark #dark-toggle:hover {
-  border-color: rgba(255,255,255,.35) !important;
+  border-color: #66d9e8 !important;
 }
 
-/* ══════════════════════════════════════════════════════════════
-   DARK MODE — COMPREHENSIVE FIX (appended last, highest priority)
-   Fixes all hardcoded #ffffff / white backgrounds that survive
-   into dark mode. Every rule uses !important to win cascade.
-   Theme ref: fashion app dark — pure #0a0a0a base, #111 cards,
-   crisp white text, cyan/teal accent — professional & premium.
-   ══════════════════════════════════════════════════════════════ */
+/* ══ NOISE / AMBIENT ══ */
+html.dark #noise-layer { opacity: .03; }
 
-/* ── Deeper, richer dark palette ── */
-html.dark {
-  --bg:            #080c12 !important;
-  --bg-2:          #0d1219 !important;
-  --surface:       #111722 !important;
-  --surface-2:     #161e2d !important;
-  --border:        rgba(255,255,255,.09) !important;
-  --border-strong: rgba(255,255,255,.18) !important;
-  --text:          #f0f2f8 !important;
-  --muted:         #7a839a !important;
-  --primary:       #3ec6e8 !important;
-  --accent:        #58d8f5 !important;
-  --pop:           #f27858 !important;
-  --glow:          rgba(62,198,232,.20) !important;
-  --grad:          linear-gradient(135deg,#3ec6e8,#58d8f5 65%,#f27858) !important;
-  --shadow:        0 2px 16px rgba(0,0,0,.55), 0 8px 32px -8px rgba(0,0,0,.45) !important;
-}
-
-/* ── Body ── */
-html.dark body {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
-
-/* ── All cards: kill every hardcoded white background ── */
-html.dark .skill-card,
-html.dark .edu-card,
-html.dark .xp-card,
-html.dark .cert-card,
-html.dark .course-card,
-html.dark .project-card,
-html.dark .blog-card,
-html.dark .lc-card,
-html.dark .ach-card,
-html.dark .facet-card,
-html.dark .ab2-stat-card,
-html.dark .social-card,
-html.dark .pm-panel,
-html.dark .lb-figure,
-html.dark .toast {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
-  box-shadow: 0 1px 8px rgba(0,0,0,.4) !important;
-}
-
-/* ── Skill card: icon bg ── */
-html.dark .skill-icon {
-  background: rgba(62,198,232,.08) !important;
-  border-radius: 8px;
-}
-html.dark .skill-name {
-  color: var(--text) !important;
-}
-
-/* ── Education card text ── */
-html.dark .edu-main h3 {
-  color: var(--text) !important;
-}
-html.dark .edu-main .edu-sub,
-html.dark .edu-badge,
-html.dark .edu-tags span {
-  color: var(--muted) !important;
-  border-color: var(--border) !important;
-}
-html.dark .edu-icon {
-  background: rgba(62,198,232,.10) !important;
-  color: var(--primary) !important;
-}
-html.dark .edu-badge .status {
-  color: var(--primary) !important;
-}
-
-/* ── XP / Experience ── */
-html.dark .xp-card,
-html.dark .xp-head,
-html.dark .xp-meta { color: var(--text) !important; }
-html.dark .xp-org { color: var(--primary) !important; }
-html.dark .xp-badge {
-  background: rgba(62,198,232,.10) !important;
-  color: var(--primary) !important;
-  border-color: rgba(62,198,232,.22) !important;
-}
-html.dark .xp-timeline::before {
-  background: rgba(62,198,232,.25) !important;
-}
-html.dark .xp-item::before {
-  background: var(--primary) !important;
-  box-shadow: 0 0 12px rgba(62,198,232,.45) !important;
-}
-html.dark .xp-points li { color: var(--muted) !important; }
-html.dark .xp-points li::before { color: var(--primary) !important; }
-
-/* ── Cert cards ── */
-html.dark .cert-art {
-  background: linear-gradient(135deg, rgba(62,198,232,.12), rgba(88,216,245,.06)) !important;
-}
-html.dark .cert-art i { color: var(--primary) !important; }
-html.dark .cert-body h3,
-html.dark .cert-title { color: var(--text) !important; }
-html.dark .cert-issuer { color: var(--muted) !important; }
-html.dark .cert-issuer i { color: var(--primary) !important; }
-html.dark .cert-seal {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--primary) !important;
-}
-
-/* ── Project cards ── */
-html.dark .project-banner {
-  background: linear-gradient(135deg, rgba(62,198,232,.10), rgba(88,216,245,.05)) !important;
-}
-html.dark .project-banner i { color: var(--primary) !important; }
-html.dark .project-name { color: var(--text) !important; }
-html.dark .project-banner .project-cat {
-  background: rgba(255,255,255,.06) !important;
-  border-color: rgba(255,255,255,.12) !important;
-  color: var(--muted) !important;
-}
-
-/* ── Mini buttons ── */
-html.dark .mini-btn {
-  background: rgba(255,255,255,.06) !important;
-  border-color: rgba(255,255,255,.12) !important;
-  color: var(--text) !important;
-}
-html.dark .mini-btn.solid,
-html.dark .cert-view-btn {
-  background: var(--primary) !important;
-  color: #fff !important;
-  border-color: transparent !important;
-}
-
-/* ── Profile links / social icons ── */
-html.dark .profile-links a {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--muted) !important;
-}
-html.dark .profile-links a:hover {
-  color: var(--text) !important;
-  border-color: var(--primary) !important;
-}
-html.dark .social-card {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-}
-
-/* ── Contact form & map ── */
-html.dark .contact-form,
-html.dark .map-placeholder {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-}
-html.dark .contact-form input,
-html.dark .contact-form textarea,
-html.dark .contact-form select {
-  background: var(--bg-2) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
-}
-html.dark .contact-form label { color: var(--muted) !important; }
-
-/* ── Skills summary ── */
-html.dark .skills-summary li {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
-}
-
-/* ── Course cards ── */
-html.dark .course-card h3,
-html.dark .course-card h3 i { color: var(--text) !important; }
-html.dark .course-meta { color: var(--muted) !important; }
-
-/* ── Blog cards ── */
-html.dark .blog-card h3 { color: var(--text) !important; }
-html.dark .blog-meta { color: var(--muted) !important; }
-
-/* ── Achievement cards ── */
-html.dark .ach-card h3 { color: var(--text) !important; }
-html.dark .ach-card p { color: var(--muted) !important; }
-
-/* ── Hero section ── */
-html.dark .hero-name,
-html.dark .hero-role { color: var(--text) !important; }
-html.dark .hero-greeting,
-html.dark .hero-bio { color: var(--muted) !important; }
-
-/* ── HOVER states: fix white flash on dark backgrounds ── */
-html.dark .project-card:hover,
-html.dark .cert-card:hover,
-html.dark .skill-card:hover,
-html.dark .edu-card:hover,
-html.dark .xp-card:hover,
-html.dark .course-card:hover,
-html.dark .blog-card:hover,
-html.dark .lc-card:hover,
-html.dark .ach-card:hover,
-html.dark .facet-card:hover,
-html.dark .ab2-stat-card:hover,
-html.dark .contact-form:hover,
-html.dark .map-placeholder:hover {
-  background: var(--surface-2) !important;
-  border-color: var(--primary) !important;
-  box-shadow: 0 14px 40px -14px var(--glow), 0 4px 16px rgba(0,0,0,.4) !important;
-}
-
-/* ── Chips / tags ── */
-html.dark .chip,
-html.dark .tag,
-html.dark .edu-tags span {
-  background: rgba(62,198,232,.08) !important;
-  border-color: rgba(62,198,232,.18) !important;
-  color: var(--accent) !important;
-}
-html.dark .chip.active {
-  background: var(--primary) !important;
-  color: #fff !important;
-  border-color: var(--primary) !important;
-}
-
-/* ── Section headings ── */
-html.dark .section-label { color: var(--primary) !important; }
-html.dark .section-head h2 { color: var(--text) !important; }
-html.dark .section-head p { color: var(--muted) !important; }
-
-/* ── About / facets ── */
-html.dark .about-body p { color: var(--muted) !important; }
-html.dark .facet-label { color: var(--muted) !important; }
-html.dark .facet-val { color: var(--text) !important; }
-
-/* ── LeetCode / stats ── */
-html.dark .lc-card { background: var(--surface) !important; }
-html.dark .lc-stat-label { color: var(--muted) !important; }
-html.dark .lc-stat-val { color: var(--text) !important; }
-
-/* ── PM panel / ToC ── */
-html.dark .pm-panel {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-}
-html.dark .lb-figure {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-}
-
-/* ── Hero stats (numbers below hero) ── */
-html.dark .hero-stat-val { color: var(--text) !important; }
-html.dark .hero-stat-label { color: var(--muted) !important; }
-
-/* ── Oracle contact widget floating buttons ── */
-html.dark #oracle-contact-popup {
-  background: var(--surface) !important;
-  border-color: var(--border) !important;
-  color: var(--text) !important;
-}
-
-/* ── Navigation dark mode precision ── */
-html.dark #site-nav {
-  background: rgba(8,12,18,.88) !important;
-  border-bottom-color: rgba(255,255,255,.07) !important;
-}
-html.dark .nav-top {
-  background: #0d1117 !important;
-  border-bottom-color: rgba(255,255,255,.08) !important;
-}
-html.dark .nav-search-pill {
-  background: #131b28 !important;
-  border-color: rgba(255,255,255,.12) !important;
-  color: #6a7290 !important;
-}
-html.dark .nav-links a { color: #7a839a !important; }
-html.dark .nav-links a:hover,
-html.dark .nav-links a.active { color: #f0f2f8 !important; }
-html.dark .nav-secondary { background: #080c12 !important; }
-
-/* ── Scrollbar refined ── */
-html.dark ::-webkit-scrollbar-track { background: #080c12; }
-html.dark ::-webkit-scrollbar-thumb {
-  background: rgba(62,198,232,.22);
-  border-color: #080c12;
-}
-html.dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(62,198,232,.38);
+/* ══ HERO VISUAL CARD — keep Monokai dark teal, no change needed ══ */
+html.dark .oracle-ai-card {
+  background: linear-gradient(135deg, #1a2a2a 0%, #1f3030 45%, #162424 100%) !important;
 }
