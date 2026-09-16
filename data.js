@@ -310,11 +310,10 @@ MSR.CMD_SECTIONS = [
   ['Contact', '#contact-section', 'fa-solid fa-paper-plane']
 ];
 MSR.CMD_LINKS = [
-  ['Open GitHub', 'https://github.com/Mohit-1307', 'fa-brands fa-github'],
-  ['Open LinkedIn', 'https://www.linkedin.com/in/mohitsingh1307/', 'fa-brands fa-linkedin'],
-  ['Open LeetCode', 'https://leetcode.com/u/MOHIT_SINGH_RAJPUT/', 'fa-solid fa-code'],
-  ['Open Kaggle', 'https://www.kaggle.com/mohitsinghrajput1307', 'fa-brands fa-kaggle'],
-  ['Open Hugging Face', 'https://huggingface.co/msr1307', 'fa-solid fa-face-smile'],
+  ['Open GitHub', 'https://github.com/13msrajput', 'fa-brands fa-github'],
+  ['Open LinkedIn', 'https://www.linkedin.com/in/13msrajput/', 'fa-brands fa-linkedin'],
+  ['Open LeetCode', 'https://leetcode.com/u/13msrajput/', 'fa-solid fa-code'],
+  ['Open Kaggle', 'https://www.kaggle.com/13msrajput', 'fa-brands fa-kaggle'],
   ['Download Résumé', 'https://drive.google.com/file/d/1t6S5J91QABQ-En51T6NCdowmZBcVm9hn/view', 'fa-solid fa-file-arrow-down'],
   ['Email Me', 'mailto:mohitsinghrajput1307@gmail.com', 'fa-solid fa-envelope']
 ];
@@ -327,14 +326,14 @@ MSR.BOT = {
     { k: ['skill', 'stack', 'technolog', 'tools', 'know'], a: "Mohit's core stack: <strong>Python, PyTorch, TensorFlow, Scikit-learn</strong> for ML/DL; <strong>LangChain, LangGraph, FAISS</strong> for LLM & RAG systems; <strong>OpenCV, Librosa</strong> for vision & audio; and <strong>FastAPI + AWS EC2</strong> for deployment. Browse the <a href='#skills-section'>Skills section</a> for all 25+." },
     { k: ['project', 'build', 'built', 'work', 'portfolio', 'repo'], a: "He's shipped 9 AI projects — highlights: a <strong>Multi-Agent AI Customer Support Assistant</strong> (LangGraph + RAG), <strong>Facial Emotion Recognition</strong> (CNN + OpenCV), <strong>Speech Emotion Recognition</strong> (Librosa), and <strong>Heart Disease Prediction</strong>. All live in the <a href='#projects-section'>Projects section</a> with real GitHub data." },
     { k: ['experience', 'intern', 'job', 'labmentix', 'codealpha'], a: "Mohit is currently an <strong>AI/ML Intern at Labmentix</strong> (June 2026 → present) and completed a <strong>Machine Learning Internship at CodeAlpha</strong> (June 2026). Details in <a href='#experience-section'>Experience</a>." },
-    { k: ['leetcode', 'dsa', 'algorithm', 'problem'], a: "He's solved <strong>500+ LeetCode problems</strong> across Easy/Medium/Hard, with solutions archived on <a href='https://github.com/Mohit-1307/LeetCode-Submissions' target='_blank' rel='noopener'>GitHub</a>. Live stats are in the <a href='#leetcode-section'>LeetCode section</a>." },
+    { k: ['leetcode', 'dsa', 'algorithm', 'problem'], a: "He's solved <strong>500+ LeetCode problems</strong> across Easy/Medium/Hard, with solutions archived on <a href='https://github.com/13msrajput/LeetCode-Submissions' target='_blank' rel='noopener'>GitHub</a>. Live stats are in the <a href='#leetcode-section'>LeetCode section</a>." },
     { k: ['contact', 'email', 'reach', 'hire', 'phone', 'available'], a: "He's <strong>open to AI/ML roles</strong>! Email <a href='mailto:mohitsinghrajput1307@gmail.com'>mohitsinghrajput1307@gmail.com</a>, call +91 98879 94311, or use the <a href='#contact-section'>contact form</a>." },
     { k: ['resume', 'cv', 'résumé'], a: "Here's his résumé: <a href='resume.pdf' target='_blank' rel='noopener'>view / download PDF</a> 📄" },
     { k: ['llm', 'rag', 'agent', 'genai', 'generative', 'gpt', 'claude'], a: "GenAI is his main focus: multi-agent orchestration with <strong>LangGraph</strong>, RAG pipelines with <strong>FAISS + Sentence Transformers</strong>, and multi-provider LLM apps (OpenAI, Claude, Groq, Ollama). Check <a href='#projects-section'>AI-Agents-and-RAG-Systems</a>." },
-    { k: ['vision', 'image', 'cnn', 'opencv', 'face'], a: "Computer vision work includes real-time <strong>facial emotion recognition</strong> and <strong>handwritten digit recognition</strong> with CNNs — both open-source on <a href='https://github.com/Mohit-1307' target='_blank' rel='noopener'>GitHub</a>." },
+    { k: ['vision', 'image', 'cnn', 'opencv', 'face'], a: "Computer vision work includes real-time <strong>facial emotion recognition</strong> and <strong>handwritten digit recognition</strong> with CNNs — both open-source on <a href='https://github.com/13msrajput' target='_blank' rel='noopener'>GitHub</a>." },
     { k: ['who', 'about', 'mohit', 'yourself', 'intro'], a: "Mohit Singh Rajput is an <strong>AI/ML Engineer</strong> who builds systems that see, listen, reason and respond — from deep-learning perception models to multi-agent LLM products. Read his story in <a href='#about-section'>About</a>." },
     { k: ['theme', 'color', 'dark', 'light'], a: "This site has 6 color themes — <strong>Signal, Violet, Crimson, Ocean, Skyblue &amp; Light</strong> — each with its own light/dark mode. Hit the 🎨 icon in the nav, or the 🌙 icon to just flip light/dark." },
-    { k: ['github', 'kaggle', 'hugging', 'social', 'linkedin'], a: "Find him at <a href='https://github.com/Mohit-1307' target='_blank' rel='noopener'>GitHub</a>, <a href='https://www.linkedin.com/in/mohitsingh1307/' target='_blank' rel='noopener'>LinkedIn</a>, <a href='https://www.kaggle.com/mohitsinghrajput1307' target='_blank' rel='noopener'>Kaggle</a> and <a href='https://huggingface.co/msr1307' target='_blank' rel='noopener'>Hugging Face 🤗</a>." },
+    { k: ['github', 'kaggle', 'hugging', 'social', 'linkedin'], a: "Find him at <a href='https://github.com/13msrajput' target='_blank' rel='noopener'>GitHub</a>, <a href='https://www.linkedin.com/in/13msrajput/' target='_blank' rel='noopener'>LinkedIn</a>, <a href='https://www.kaggle.com/13msrajput' target='_blank' rel='noopener'>Kaggle</a> and <a href='https://x.com/13ms_rajput' target='_blank' rel='noopener'>X</a>." },
     { k: ['hello', 'hi', 'hey', 'yo'], a: "Hey there! 👋 Ask me anything about Mohit — skills, projects, experience, or how to get in touch." }
   ],
   fallback: "Great question! I know about Mohit's <strong>skills, projects, experience, LeetCode stats and contact info</strong>. Try one of those — or email him directly at <a href='mailto:mohitsinghrajput1307@gmail.com'>mohitsinghrajput1307@gmail.com</a>."
