@@ -275,8 +275,6 @@ $$('.magnetic').forEach(btn => {
   btn.addEventListener('pointermove', e => {
     if (html.classList.contains('reduce-motion')) return;
     const r  = btn.getBoundingClientRect();
-    // Dead-zone: skip if pointer is outside element bounds (prevents edge blinking)
-    if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
     const dx = (e.clientX - r.left - r.width  / 2) * .14;
     const dy = (e.clientY - r.top  - r.height / 2) * .14;
     // Hard cap: never move more than 8px so large buttons don't warp
@@ -675,8 +673,6 @@ oracleWidget.init();
       if (rafId) cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(() => {
         const r = card.getBoundingClientRect();
-        // Dead-zone: ignore if pointer is outside the card bounds (edge flicker guard)
-        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
         // Clamp to [0,1] so partial pointer events outside bounds don't blow up
         const nx = Math.max(0, Math.min(1, (e.clientX - r.left)  / r.width));
         const ny = Math.max(0, Math.min(1, (e.clientY - r.top)   / r.height));
