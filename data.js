@@ -63,7 +63,7 @@ MSR.PROJECTS = [
     liveUrl: 'https://techmart-ai-support.vercel.app/chat'
   },
   {
-    repo: 'Facial-Emotion-Recognition-System',
+    repo: 'Facial-Emotion-Recognition',
     cat: 'Computer Vision', icon: 'fa-solid fa-face-grin-beam',
     arch: 'Haar-cascade face detection → preprocessing pipeline → CNN classifier (Keras) trained on FER-style data → real-time OpenCV inference loop.',
     timeline: '2025 · 4 weeks',
@@ -72,13 +72,13 @@ MSR.PROJECTS = [
     liveUrl: 'https://deepfer-q8kd.onrender.com/'
   },
   {
-    repo: 'Loan-Eligibility-and-EMI-Prediction-AI',
+    repo: 'Loan-Eligibility-and-Safe-EMI-Prediction',
     cat: 'Machine Learning', icon: 'fa-solid fa-building-columns',
     arch: 'Applicant financial data → preprocessing & feature engineering → ML classification for loan eligibility + regression for EMI estimation → interactive Streamlit app.',
     timeline: '2026',
     features: ['Loan eligibility prediction from applicant financial data', 'EMI amount estimation with regression modeling', 'Interactive Streamlit interface for real-time predictions'],
     fallbackDesc: 'An AI-powered app that predicts loan eligibility and estimates EMI amounts from applicant financial data.',
-    liveUrl: 'https://loan-eligibility-and-emi-prediction-ai.streamlit.app/'
+    liveUrl: 'https://loan-eligibility-and-safe-emi-prediction.streamlit.app/'
   },
   {
     repo: 'Tourism-Experience-Analytics-System',
@@ -90,13 +90,13 @@ MSR.PROJECTS = [
     liveUrl: 'https://tourism-experience-analytics-system.streamlit.app/'
   },
   {
-    repo: 'Shopper-Spectrum',
+    repo: 'Customer-Segmentation-and-Product-Recommendations',
     cat: 'Machine Learning', icon: 'fa-solid fa-store',
     arch: 'E-commerce transactions → RFM feature construction → K-Means segmentation + collaborative filtering recommender → Streamlit app.',
     timeline: '2025 · 3 weeks',
     features: ['RFM-based customer segmentation', 'Item-similarity product recommendations', 'Interactive Streamlit analytics app'],
     fallbackDesc: 'Customer segmentation and product recommendation system built on real e-commerce transaction data.',
-    liveUrl: 'https://shopper-spectrum-app.streamlit.app/'
+    liveUrl: 'https://customer-segmentation-and-item-recommendations.streamlit.app/'
   },
   {
     repo: 'Flipkart-CSAT-Prediction',
