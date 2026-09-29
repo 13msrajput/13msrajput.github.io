@@ -702,7 +702,7 @@ oracleWidget.init();
 
 /* ════════ ORACLE AI CARD — Web Speech Introduction ════════ */
 (() => {
-  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, solved over 550 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person.`;
+  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, solved over 500 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person.`;
   const playBtn = $('#ai-play-btn');
   const playIcon = $('#ai-play-icon');
   const wave = $('#ai-wave');
@@ -738,7 +738,7 @@ oracleWidget.init();
 
 /* ════════ ORACLE AI VIDEO CARD — Web Speech Introduction ════════ */
 (() => {
-  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines powered by FAISS and Sentence Transformers, real-time computer vision with OpenCV and deep CNNs, and speech emotion recognition with Librosa and PyTorch. He's interned at Labmentix and CodeAlpha, solved over 550 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person. Reach him at mohitsinghrajput1307@gmail.com.`;
+  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines powered by FAISS and Sentence Transformers, real-time computer vision with OpenCV and deep CNNs, and speech emotion recognition with Librosa and PyTorch. He's interned at Labmentix and CodeAlpha, solved over 500 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person. Reach him at mohitsinghrajput1307@gmail.com.`;
 
   const playBtn = $('#ai-play-btn');
   const playIcon = $('#ai-play-icon');
