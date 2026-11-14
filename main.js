@@ -700,6 +700,31 @@ oracleWidget.init();
   $$(CARD_SELECTORS).forEach(initTilt);
 })();
 
+/* ════════ AI INTRO VOICE PICKER — clear male voice, English (India) ════════
+   Web Speech API can only use voices installed on the visitor's device, so
+   this ranks what's available: Indian-English male voices first, then any
+   Indian-English voice that isn't female, then other English male voices. */
+function pickIntroVoice(voices) {
+  const lang = v => (v.lang || '').replace('_', '-').toLowerCase();
+  const isEnIN = v => lang(v) === 'en-in';
+  const isEn = v => lang(v).startsWith('en');
+  const FEMALE = /female|woman|heera|neerja|veena|kalpana|swara|aditi|raveena|priya|zira|samantha|susan|hazel/i;
+  const MALE = /prabhat|ravi|rishi|madhur|\bmale\b|\bman\b|david|mark|james|daniel|guy|ryan|alex|george|fred/i;
+  const NATURAL = /natural|online|neural|premium|enhanced/i;
+  const rank = list => list.find(v => NATURAL.test(v.name)) || list[0];
+  const tiers = [
+    voices.filter(v => isEnIN(v) && MALE.test(v.name) && !FEMALE.test(v.name)),
+    voices.filter(v => isEnIN(v) && !FEMALE.test(v.name)),
+    voices.filter(v => isEn(v) && MALE.test(v.name) && !FEMALE.test(v.name)),
+    voices.filter(isEnIN),
+    voices.filter(isEn),
+  ];
+  for (let i = 0; i < tiers.length; i++) {
+    if (tiers[i].length) return { voice: rank(tiers[i]), maleIndian: i === 0 };
+  }
+  return { voice: voices[0] || null, maleIndian: false };
+}
+
 /* ════════ ORACLE AI CARD — Web Speech Introduction ════════ */
 (() => {
   const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, solved over 600 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person.`;
@@ -717,13 +742,11 @@ oracleWidget.init();
   }
   function startSpeech() {
     const utter = new SpeechSynthesisUtterance(INTRO);
-    utter.rate = 1.0; utter.pitch = 1.0;
-    const voices = window.speechSynthesis.getVoices();
-    const eng = voices.find(v => v.lang === 'en-US' && /google|premium/i.test(v.name))
-             || voices.find(v => v.lang === 'en-US')
-             || voices.find(v => v.lang.startsWith('en'))
-             || voices[0];
-    if (eng) utter.voice = eng;
+    const pick = pickIntroVoice(window.speechSynthesis.getVoices());
+    utter.lang = 'en-IN';
+    utter.rate = 0.95;
+    utter.pitch = pick.maleIndian ? 1.0 : 0.85; // deepen only when no native male en-IN voice exists
+    if (pick.voice) utter.voice = pick.voice;
     utter.onstart = () => { speaking = true; if (playIcon) playIcon.className = 'fa-solid fa-pause'; if (wave) wave.hidden = false; if (caption) caption.textContent = 'AI is speaking...'; };
     utter.onend = utter.onerror = () => stopSpeech();
     window.speechSynthesis.speak(utter);
@@ -759,13 +782,11 @@ oracleWidget.init();
 
   function startSpeech() {
     utter = new SpeechSynthesisUtterance(INTRO);
-    utter.rate = 1.0; utter.pitch = 1.0; utter.volume = 1.0;
-    const voices = window.speechSynthesis.getVoices();
-    const eng = voices.find(v => v.lang === 'en-US' && /google|natural|premium/i.test(v.name))
-             || voices.find(v => v.lang === 'en-US')
-             || voices.find(v => v.lang.startsWith('en'))
-             || voices[0];
-    if (eng) utter.voice = eng;
+    const pick = pickIntroVoice(window.speechSynthesis.getVoices());
+    utter.lang = 'en-IN';
+    utter.rate = 0.95; utter.volume = 1.0;
+    utter.pitch = pick.maleIndian ? 1.0 : 0.85; // deepen only when no native male en-IN voice exists
+    if (pick.voice) utter.voice = pick.voice;
     utter.onstart = () => {
       speaking = true;
       if (playIcon) playIcon.className = 'fa-solid fa-pause';
