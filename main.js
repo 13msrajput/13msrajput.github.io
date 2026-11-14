@@ -725,85 +725,66 @@ function pickIntroVoice(voices) {
   return { voice: voices[0] || null, maleIndian: false };
 }
 
-/* ════════ ORACLE AI CARD — Web Speech Introduction ════════ */
+/* ════════ AI INTRO CARD — recorded voice introduction ════════
+   Plays intro-voice.mp3. If the audio can't load or play, it falls back to
+   the browser's built-in speech (Indian-English male voice where available). */
 (() => {
   const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, solved over 600 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person.`;
+  const AUDIO_SRC = 'intro-voice.mp3';
   const playBtn = $('#ai-play-btn');
   const playIcon = $('#ai-play-icon');
   const wave = $('#ai-wave');
   const caption = $('#ai-caption');
-  if (!playBtn || !window.speechSynthesis) return;
-  let speaking = false;
-  function stopSpeech() {
-    window.speechSynthesis.cancel(); speaking = false;
+  if (!playBtn) return;
+
+  const audio = new Audio();
+  audio.preload = 'none';
+  audio.src = AUDIO_SRC;
+  let playing = false;
+
+  function showPlaying() {
+    playing = true;
+    if (playIcon) playIcon.className = 'fa-solid fa-pause';
+    if (wave) wave.hidden = false;
+    if (caption) caption.textContent = 'Playing...';
+  }
+  function stopAll() {
+    playing = false;
+    audio.pause();
+    try { audio.currentTime = 0; } catch (e) { /* not seekable yet */ }
+    if (window.speechSynthesis) window.speechSynthesis.cancel();
     if (playIcon) playIcon.className = 'fa-solid fa-play';
     if (wave) wave.hidden = true;
-    if (caption) caption.textContent = '▶ 30-second AI introduction';
+    if (caption) caption.textContent = '▶ ~45-second voice introduction';
   }
-  function startSpeech() {
-    const utter = new SpeechSynthesisUtterance(INTRO);
-    const pick = pickIntroVoice(window.speechSynthesis.getVoices());
-    utter.lang = 'en-IN';
-    utter.rate = 0.95;
-    utter.pitch = pick.maleIndian ? 1.0 : 0.85; // deepen only when no native male en-IN voice exists
-    if (pick.voice) utter.voice = pick.voice;
-    utter.onstart = () => { speaking = true; if (playIcon) playIcon.className = 'fa-solid fa-pause'; if (wave) wave.hidden = false; if (caption) caption.textContent = 'AI is speaking...'; };
-    utter.onend = utter.onerror = () => stopSpeech();
-    window.speechSynthesis.speak(utter);
-  }
-  playBtn.addEventListener('click', () => {
-    if (speaking) { stopSpeech(); return; }
-    const voices = window.speechSynthesis.getVoices();
-    if (!voices.length) { window.speechSynthesis.onvoiceschanged = startSpeech; }
-    else { startSpeech(); }
-  });
-})();
-
-/* ════════ ORACLE AI VIDEO CARD — Web Speech Introduction ════════ */
-(() => {
-  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines powered by FAISS and Sentence Transformers, real-time computer vision with OpenCV and deep CNNs, and speech emotion recognition with Librosa and PyTorch. He's interned at Labmentix and CodeAlpha, solved over 600 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person. Reach him at mohitsinghrajput1307@gmail.com.`;
-
-  const playBtn = $('#ai-play-btn');
-  const playIcon = $('#ai-play-icon');
-  const wave = $('#ai-wave');
-  const caption = $('#ai-caption');
-  if (!playBtn || !window.speechSynthesis) return;
-
-  let speaking = false;
-  let utter = null;
-
-  function stopSpeech() {
-    window.speechSynthesis.cancel();
-    speaking = false;
-    if (playIcon) playIcon.className = 'fa-solid fa-play';
-    if (wave) wave.hidden = true;
-    if (caption) caption.textContent = '▶ 30-second AI introduction';
-  }
-
-  function startSpeech() {
-    utter = new SpeechSynthesisUtterance(INTRO);
-    const pick = pickIntroVoice(window.speechSynthesis.getVoices());
-    utter.lang = 'en-IN';
-    utter.rate = 0.95; utter.volume = 1.0;
-    utter.pitch = pick.maleIndian ? 1.0 : 0.85; // deepen only when no native male en-IN voice exists
-    if (pick.voice) utter.voice = pick.voice;
-    utter.onstart = () => {
-      speaking = true;
-      if (playIcon) playIcon.className = 'fa-solid fa-pause';
-      if (wave) wave.hidden = false;
-      if (caption) caption.textContent = 'AI is speaking...';
+  function speakFallback() {
+    if (!window.speechSynthesis) { stopAll(); return; }
+    const begin = () => {
+      const utter = new SpeechSynthesisUtterance(INTRO);
+      const pick = pickIntroVoice(window.speechSynthesis.getVoices());
+      utter.lang = 'en-IN';
+      utter.rate = 0.95; utter.volume = 1.0;
+      utter.pitch = pick.maleIndian ? 1.0 : 0.85; // deepen only when no native male en-IN voice exists
+      if (pick.voice) utter.voice = pick.voice;
+      utter.onstart = showPlaying;
+      utter.onend = utter.onerror = () => stopAll();
+      window.speechSynthesis.speak(utter);
     };
-    utter.onend = utter.onerror = () => stopSpeech();
-    window.speechSynthesis.speak(utter);
+    // Voices load asynchronously in some browsers
+    if (!window.speechSynthesis.getVoices().length) { window.speechSynthesis.onvoiceschanged = begin; }
+    else { begin(); }
   }
 
+  audio.addEventListener('ended', stopAll);
+  audio.addEventListener('error', () => { if (playing) stopAll(); });
+
   playBtn.addEventListener('click', () => {
-    if (speaking) { stopSpeech(); }
-    else {
-      // Voices may not be loaded on first call
-      if (!window.speechSynthesis.getVoices().length) {
-        window.speechSynthesis.onvoiceschanged = () => { startSpeech(); };
-      } else { startSpeech(); }
+    if (playing) { stopAll(); return; }
+    const attempt = audio.play();
+    if (attempt && typeof attempt.then === 'function') {
+      attempt.then(showPlaying).catch(speakFallback); // blocked or missing file -> browser voice
+    } else {
+      showPlaying();
     }
   });
 })();
