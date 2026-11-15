@@ -729,7 +729,7 @@ function pickIntroVoice(voices) {
    Plays intro-voice.mp3. If the audio can't load or play, it falls back to
    the browser's built-in speech (Indian-English male voice where available). */
 (() => {
-  const INTRO = `Hi! I'm an AI assistant introducing Mohit Singh Rajput — an AI and Machine Learning Engineer based in Jaipur, India. Mohit is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His core expertise spans multi-agent LLM orchestration using LangGraph and LangChain, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, solved over 600 LeetCode problems, and holds certifications from Oracle, Google Cloud, Microsoft, and Anthropic. If you're looking for a passionate AI engineer who ships production-grade systems — Mohit is your person.`;
+  const INTRO = `Hi! This is Mohit Singh Rajput, an AI and Machine Learning Engineer from Jaipur, India. He is a final-year Computer Science student who builds intelligent systems that see, listen, reason, and respond. His work spans multi-agent LLM assistants with LangGraph, RAG pipelines, real-time computer vision, and speech emotion recognition. He has interned at Labmentix and CodeAlpha, and solved over six hundred LeetCode problems. If you need an AI engineer who ships, Mohit is your person.`;
   const AUDIO_SRC = 'intro-voice.mp3';
   const playBtn = $('#ai-play-btn');
   const playIcon = $('#ai-play-icon');
@@ -755,7 +755,7 @@ function pickIntroVoice(voices) {
     if (window.speechSynthesis) window.speechSynthesis.cancel();
     if (playIcon) playIcon.className = 'fa-solid fa-play';
     if (wave) wave.hidden = true;
-    if (caption) caption.textContent = '▶ ~45-second voice introduction';
+    if (caption) caption.textContent = '▶ 30-second voice introduction';
   }
   function speakFallback() {
     if (!window.speechSynthesis) { stopAll(); return; }
